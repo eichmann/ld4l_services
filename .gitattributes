@@ -1,0 +1,22 @@
+* text=auto !eol
+/.classpath -text
+/.project -text
+.settings/.jsdtscope -text
+.settings/org.eclipse.jdt.core.prefs -text
+.settings/org.eclipse.m2e.core.prefs -text
+.settings/org.eclipse.wst.common.component -text
+.settings/org.eclipse.wst.common.project.facet.core.xml -text
+.settings/org.eclipse.wst.jsdt.ui.superType.container -text
+.settings/org.eclipse.wst.jsdt.ui.superType.name -text
+.settings/org.eclipse.wst.validation.prefs -text
+WebContent/META-INF/MANIFEST.MF -text
+WebContent/WEB-INF/web.xml -text
+WebContent/dbpedia.jsp -text
+WebContent/dbpedia_lookup.jsp -text
+WebContent/footer.jsp -text
+WebContent/header.jsp -text
+WebContent/images/bullet-l1.gif -text
+WebContent/index.jsp -text
+WebContent/menu.jsp -text
+WebContent/resources/style.css -text
+/pom.xml -text
