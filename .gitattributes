@@ -12,6 +12,7 @@
 WebContent/META-INF/MANIFEST.MF -text
 WebContent/WEB-INF/web.xml -text
 WebContent/dbpedia.jsp -text
+WebContent/dbpedia_browse.jsp -text
 WebContent/dbpedia_lookup.jsp -text
 WebContent/footer.jsp -text
 WebContent/header.jsp -text

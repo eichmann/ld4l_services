@@ -17,7 +17,18 @@
 <div id="centerCol">
 <h2>DBpedia Entity Search</h2>
 
-<form name="queryForm" method='GET' action="dbpedia_lookup.jsp">
+<script type="text/javascript">
+	function OnSubmitForm() {
+		if (document.queryForm.mode[0].checked == true) {
+			document.queryForm.action = "dbpedia_lookup.jsp";
+		} else if (document.queryForm.mode[1].checked == true) {
+			document.queryForm.action = "dbpedia_browse.jsp";
+		}
+		return true;
+	}
+</script>
+
+<form name="queryForm" method='GET' onsubmit="return OnSubmitForm();">
     <table border="0">
         <tr>
             <td>
