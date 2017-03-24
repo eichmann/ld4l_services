@@ -15,14 +15,14 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-<h2>DBpedia Search by foaf Entity</h2>
+<h2>DBpedia Person Search</h2>
 
 <script type="text/javascript">
 	function OnSubmitForm() {
 		if (document.queryForm.mode[0].checked == true) {
-			document.queryForm.action = "dbpedia_lookup.jsp";
+			document.queryForm.action = "dbpedia_person_lookup.jsp";
 		} else if (document.queryForm.mode[1].checked == true) {
-			document.queryForm.action = "dbpedia_browse.jsp";
+			document.queryForm.action = "dbpedia_person_browse.jsp";
 		}
 		return true;
 	}
@@ -37,41 +37,42 @@
                     <input type="radio" name="mode" value="literal">Display as HTML table
                </fieldset>
             </td>
-            <td>
-                <fieldset><legend>Ontology class?</legend>
-               <input name="entity" size=50>
-                 </fieldset>
-            </td>
         </tr>
         <tr>
-            <td colspan=2>
-                <fieldset><legend>Name of Entity?</legend>
-                <input name="name" size=50> <input type=submit name=submitButton value=Search>
+            <td >
+                <fieldset><legend>Given Name of Person?</legend>
+                <input name="givenname" size=25>
                 </fieldset>
+            </td>
+            <td>
+                <fieldset><legend>Surname of Person?</legend>
+               <input name="surname" size=25> <input type=submit name=submitButton value=Search>
+                 </fieldset>
             </td>
         </tr>
     </table>
 </form>
 
 <h2>Search Logic</h2>
-The SPARQL query wrapped by this interface currently makes a number of assumptions, particularly that an instance of a foaf class is sought and that
-the instance asserts a name predicate that can be used to identify the instance's URI:
-<pre>
-    PREFIX foaf:  <c:out value="<"/>http://xmlns.com/foaf/0.1/<c:out value=">"/>
-    PREFIX rdf:   <c:out value="<"/>http://www.w3.org/1999/02/22-rdf-syntax-ns#<c:out value=">"/>
-    PREFIX rdfs:  <c:out value="<"/>http://www.w3.org/2000/01/rdf-schema#<c:out value=">"/>
-
-    SELECT ?s ?p ?o WHERE {
-        ?s ?p ?o .
-        ?s rdf:type foaf:?entity.
-        ?s &lt;http://xmlns.com/foaf/0.1/name&gt; ?name@en .
-    }
-</pre>
+The SPARQL query wrapped by this interface currently comes in three variations
+<dl>
+<dt>Only givenname is specified
+<dd>the query only specifies foaf:giveName
+<dt>Only surname is specified
+<dd>the query only specifies foaf:surname
+<dt>Both givenname and surname specified
+<dd>the query specifies three conjunctive alternatives
+<ul>
+    <li> foaf:name = "givenName surname"
+    <li> foaf:name = "surname, givenName"
+    <li> foaf:givenName = "givenName" and foaf:surname = "surname"
+</ul>
+</dl>
 
 <h2>Service Request Syntax</h2>
 To make a programmatic request to this service, use the following syntax:<br>
-<code><a href="/dbpedia_lookup.jsp?entity=Entity&name=Name"><util:applicationRoot/>/dbpedia_lookup.jsp?entity=<i>Entity</i>&name=<i>Name</i></a></code><br>
-Where name is properly escaped to handle things like contained spaces.
+<code><a href="/dbpedia_person_lookup.jsp?givenname=GivenName&surname=Surname"><util:applicationRoot/>/dbpedia_person_lookup.jsp?givenname=<i>GivenName</i>&surname=<i>Surname</i></a></code><br>
+Where GivenName and Surname are properly escaped to handle things like contained spaces.
 
 <jsp:include page="/footer.jsp" flush="true" />
 </div>

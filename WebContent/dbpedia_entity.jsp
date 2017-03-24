@@ -15,14 +15,14 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-<h2>DBpedia Search by foaf Entity</h2>
+<h2>DBpedia Search by Entity Name</h2>
 
 <script type="text/javascript">
 	function OnSubmitForm() {
 		if (document.queryForm.mode[0].checked == true) {
-			document.queryForm.action = "dbpedia_lookup.jsp";
+			document.queryForm.action = "dbpedia_entity_lookup.jsp";
 		} else if (document.queryForm.mode[1].checked == true) {
-			document.queryForm.action = "dbpedia_browse.jsp";
+			document.queryForm.action = "dbpedia_entity_browse.jsp";
 		}
 		return true;
 	}
@@ -38,7 +38,7 @@
                </fieldset>
             </td>
             <td>
-                <fieldset><legend>Ontology class?</legend>
+                <fieldset><legend>Ontology class? (fully qualified)</legend>
                <input name="entity" size=50>
                  </fieldset>
             </td>
@@ -54,7 +54,7 @@
 </form>
 
 <h2>Search Logic</h2>
-The SPARQL query wrapped by this interface currently makes a number of assumptions, particularly that an instance of a foaf class is sought and that
+The SPARQL query wrapped by this interface currently makes a number of assumptions, particularly that a fully qualified IRI is used for the entity and that
 the instance asserts a name predicate that can be used to identify the instance's URI:
 <pre>
     PREFIX foaf:  <c:out value="<"/>http://xmlns.com/foaf/0.1/<c:out value=">"/>
@@ -63,14 +63,14 @@ the instance asserts a name predicate that can be used to identify the instance'
 
     SELECT ?s ?p ?o WHERE {
         ?s ?p ?o .
-        ?s rdf:type foaf:?entity.
+        ?s rdf:type ?entity.
         ?s &lt;http://xmlns.com/foaf/0.1/name&gt; ?name@en .
     }
 </pre>
 
 <h2>Service Request Syntax</h2>
 To make a programmatic request to this service, use the following syntax:<br>
-<code><a href="/dbpedia_lookup.jsp?entity=Entity&name=Name"><util:applicationRoot/>/dbpedia_lookup.jsp?entity=<i>Entity</i>&name=<i>Name</i></a></code><br>
+<code><a href="/dbpedia_entity_lookup.jsp?entity=Entity&name=Name"><util:applicationRoot/>/dbpedia_entity_lookup.jsp?entity=<i>Entity</i>&name=<i>Name</i></a></code><br>
 Where name is properly escaped to handle things like contained spaces.
 
 <jsp:include page="/footer.jsp" flush="true" />
