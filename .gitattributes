@@ -26,4 +26,10 @@ WebContent/images/bullet-l1.gif -text
 WebContent/index.jsp -text
 WebContent/menu.jsp -text
 WebContent/resources/style.css -text
+WebContent/viaf_entity.jsp -text
+WebContent/viaf_entity_browse.jsp -text
+WebContent/viaf_entity_lookup.jsp -text
+WebContent/viaf_person.jsp -text
+WebContent/viaf_person_browse.jsp -text
+WebContent/viaf_person_lookup.jsp -text
 /pom.xml -text
