@@ -16,9 +16,9 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-<h2>DBpedia Entity ${param.entity}: ${param.name}</h2>
+<h2>VIAF Entity ${param.entity}: ${param.name} </h2>
 
-<sparql:setEndpoint var="ld4l" sparqlURL="http://guardian.slis.uiowa.edu:3030/viaf/sparql">
+<sparql:setEndpoint var="ld4l" sparqlURL="${param.catalog}">
     <sparql:prefix prefix="foaf" baseURI="http://xmlns.com/foaf/0.1/"/>
     <sparql:prefix prefix="bibo" baseURI="http://purl.org/ontology/bibo/"/>
     <sparql:prefix prefix="rdf"  baseURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
