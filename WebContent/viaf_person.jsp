@@ -38,18 +38,6 @@
                </fieldset>
             </td>
             <td>
-                <fieldset><legend>Catalog</legend>
-                    <select name="catalog">
-                    	<option value="http://guardian.slis.uiowa.edu:3030/viaf/sparql">None</option>
-                        <option value="http://guardian.slis.uiowa.edu:3030/cornell/sparql">Cornell</option>
-                        <option value="http://guardian.slis.uiowa.edu:3030/harvard/sparql">Harvard</option>
-					    <option value="http://guardian.slis.uiowa.edu:3030/stanford/sparql">Stanford</option>
-                        <option value="http://guardian.slis.uiowa.edu:3030/combined/sparql">Combined</option>
-                    </select>
-                </fieldset>
-            </td>
-            
-            <td>
                 <fieldset><legend>Alternate Name?</legend>
                     <input type="checkbox" name="alternatename" value="alternate" >Include alternate names
                </fieldset>

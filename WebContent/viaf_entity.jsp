@@ -36,18 +36,7 @@
                     <input type="radio" name="mode" value="triple" >Return a list of triples&nbsp;&nbsp;&nbsp;
                     <input type="radio" name="mode" value="literal" checked>Display as HTML table
                </fieldset>
-            </td>
-            <td>
-                <fieldset><legend>Catalog</legend>
-                    <select name="catalog">
-                    	<option value="http://guardian.slis.uiowa.edu:3030/viaf/sparql">None</option>
-                        <option value="http://guardian.slis.uiowa.edu:3030/cornell/sparql">Cornell</option>
-                        <option value="http://guardian.slis.uiowa.edu:3030/harvard/sparql">Harvard</option>
-					    <option value="http://guardian.slis.uiowa.edu:3030/stanford/sparql">Stanford</option>
-                        <option value="http://guardian.slis.uiowa.edu:3030/combined/sparql">Combined</option>
-                    </select>
-                </fieldset>
-            </td>            
+            </td>         
             <td>
                 <fieldset><legend>Ontology class? (fully qualified)</legend>
                     <select name="entity">
