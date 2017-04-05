@@ -13,4 +13,9 @@
 <li><a href="<util:applicationRoot/>/viaf_entity.jsp">By Entity</a>
 <li><a href="<util:applicationRoot/>/viaf_person.jsp">By Person</a>
 </ul>
+<h3>Catalog</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/catalog_work.jsp">By Work</a>
+<li><a href="<util:applicationRoot/>/catalog_person.jsp">By Person</a>
+</ul>
 </div>
