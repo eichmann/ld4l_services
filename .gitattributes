@@ -11,6 +11,12 @@
 .settings/org.eclipse.wst.validation.prefs -text
 WebContent/META-INF/MANIFEST.MF -text
 WebContent/WEB-INF/web.xml -text
+WebContent/catalog_person.jsp -text
+WebContent/catalog_person_browse.jsp -text
+WebContent/catalog_person_lookup.jsp -text
+WebContent/catalog_work.jsp -text
+WebContent/catalog_work_browse.jsp -text
+WebContent/catalog_work_lookup.jsp -text
 WebContent/dbpedia.jsp -text
 WebContent/dbpedia_browse.jsp -text
 WebContent/dbpedia_entity.jsp -text
