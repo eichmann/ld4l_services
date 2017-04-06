@@ -23,6 +23,8 @@
 			document.queryForm.action = "dbpedia_person_lookup.jsp";
 		} else if (document.queryForm.mode[1].checked == true) {
 			document.queryForm.action = "dbpedia_person_browse.jsp";
+        } else if (document.queryForm.mode[2].checked == true) {
+            document.queryForm.action = "dbpedia_person_timeline.jsp";
 		}
 		return true;
 	}
@@ -33,8 +35,9 @@
         <tr>
             <td>
                 <fieldset><legend>Result Format?</legend>
-                    <input type="radio" name="mode" value="triple" checked>Return a list of triples&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="mode" value="literal">Display as HTML table
+                    <input type="radio" name="mode" value="triple" >Return a list of triples&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="mode" value="literal" checked>Display as HTML table
+                    <input type="radio" name="mode" value="dates">Display dates
                </fieldset>
             </td>
         </tr>
