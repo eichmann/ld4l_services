@@ -58,7 +58,7 @@
     </table>
 </form>
 
- <h2>Search Logic</h2>
+<h2>Search Logic</h2>
 The SPARQL query wrapped by this interface currently makes a number of assumptions ...
 <!-- particularly that a fully qualified IRI is used for the entity and that -->
 <!-- the instance asserts a name predicate that can be used to identify the instance's URI: -->
@@ -77,7 +77,7 @@ The SPARQL query wrapped by this interface currently makes a number of assumptio
 <h2>Service Request Syntax</h2>
 To make a programmatic request to this service, use the following syntax:<br>
 <code><a href="/catalog_work_lookup.jsp?work=Work"><util:applicationRoot/>/catalog_work_lookup.jsp?work=<i>Work</i></a></code><br>
-Where name is properly escaped to handle things like contained spaces.
+Where work is properly escaped to handle things like contained spaces.
 
 <jsp:include page="/footer.jsp" flush="true" />
 </div>

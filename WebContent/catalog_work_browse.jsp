@@ -28,34 +28,21 @@
 </sparql:setEndpoint>
 
 <sparql:query var="result" endpoint="${ld4l}" resultType="${mode}">
-	SELECT DISTINCT ?work ?title WHERE {
-		{
-			?work rdf:type bib:Work . 
-			?work bib:hasTitle ?x . 
-			?x rdfs:label ?name . 
-		}
-   	UNION
-        {
-            ?s ?p ?o .
-            ?s rdf:type ?x.
-            ?x <http://xmlns.com/foaf/0.1/name> ?name@en .
-        }
-    UNION
-        {
-            ?s ?p ?o .
-            ?s rdf:type ?x.
-            ?x <http://schema.org/name> ?name@en .
-        }
-    } ORDER BY ?s ?p ?o
+	SELECT DISTINCT ?o ?p WHERE {
+			?uri rdf:type mads:Authority .
+		    ?uri rdfs:label ?name. 
+			?uri mads:isIdentifiedByAuthority ?o.
+			?o mads:authoritativeLabel ?p
+		} 
     
     <sparql:parameter var="name" value="${param.work}"/>
  </sparql:query>
 
         <table border=1>
-        <thead><tr><td>Subject</td><td>Predicate</td><td>Object</td></tr></thead>
+        <thead><tr><td>Work</td><td>URI</td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-            <tr><td>${row.s}</td><td>${row.p}</td><td>${row.o}</td></tr>
+            <tr><td>${row.p}</td><td>${row.o}</td></tr>
         </c:forEach>
         </tbody>
         </table>

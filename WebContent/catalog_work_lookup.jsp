@@ -12,7 +12,7 @@
     <sparql:prefix prefix="mads" baseURI="http://www.loc.gov/mads/rdf/v1#"/>    
 </sparql:setEndpoint>
 
-<sparql:query var="result" endpoint="${ld4l}" resultType="triple">
+<%-- <sparql:query var="result" endpoint="${ld4l}" resultType="triple">
     SELECT DISTINCT ?work ?title WHERE {
     	{
 			?work rdf:type bib:Work . 
@@ -34,8 +34,19 @@
     } ORDER BY ?s ?p ?o
  
     <sparql:parameter var="name" value="${param.work}"/>
- </sparql:query>
+ </sparql:query> --%>
 
+
+<sparql:query var="result" endpoint="${ld4l}" resultType="${mode}">
+	SELECT DISTINCT ?o ?p WHERE {
+			?uri rdf:type mads:Authority .
+		    ?uri rdfs:label ?name. 
+			?uri mads:isIdentifiedByAuthority ?o.
+			?o mads:authoritativeLabel ?p
+		} 
+    
+    <sparql:parameter var="name" value="${param.work}"/>
+ </sparql:query>
 <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-${row.s} ${row.p} ${row.o} .
+${row.p} ${row.o} .
 </c:forEach>
