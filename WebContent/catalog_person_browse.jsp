@@ -29,48 +29,40 @@
 
 <sparql:query var="result" endpoint="${ld4l}" resultType="${mode}">
     <c:choose>
-
+     <c:when test="${ not empty param.givenname and empty param.surname }">
+         SELECT DISTINCT ?s ?p WHERE {
+			?s rdf:type foaf:Person.
+			?s rdfs:label ?givenname.
+			?s mads:isIdentifiedByAuthority ?object.
+			?object mads:authoritativeLabel ?p
+        }
+        <sparql:parameter var="givenname" value="${param.givenname}"/>
+    </c:when>
+    <c:when test="${ empty param.givenname and not empty param.surname }">
+         SELECT DISTINCT ?s ?p WHERE {
+			?s rdf:type foaf:Person.
+			?s rdfs:label ?surname.
+			?s mads:isIdentifiedByAuthority ?object.
+			?object mads:authoritativeLabel ?p
+        }
+        <sparql:parameter var="surname" value="${param.surname}"/>
+    </c:when>
+    
     <c:when test="${ not empty param.givenname and not empty param.familyname }">
-        SELECT DISTINCT ?s ?p ?o WHERE {
-			{ 
-			?s rdf:type mads:Authority .
-			?s mads:identifiesRWO ?p . 
-			?s mads:authoritativeLabel ?p . 
-			?s rdf:type foaf:Person .
-			    ?s mads:authoritativeLabel ?name. 
-			}
-        UNION
-            {
-                ?s ?p ?o .
-                ?s rdf:type schema:Person .
-                ?s schema:name ?name@en .
-            }
-        UNION
-            {
-                ?s ?p ?o .
-                ?s rdf:type schema:Person .
-                ?s schema:name ?sortname .
-            } 
-        UNION
-            {
-                ?s ?p ?o .
-                ?s rdf:type schema:Person .
-                ?s schema:name ?sortname@en .
-            } 
-        UNION
-            {
-                ?s ?p ?o .
-                ?s rdf:type schema:Person .
-                ?s schema:givenName ?givenname .
-                ?s schema:familyName ?familyName .
-            }
-        UNION
-            {
-                ?s ?p ?o .
-                ?s rdf:type schema:Person .
-                ?s schema:givenName ?givenname@en .
-                ?s schema:familyName ?familyName@en .
-            }
+        SELECT DISTINCT ?s ?p WHERE {
+	        {
+				?s rdf:type foaf:Person.
+				?s rdfs:label ?name.
+				?s mads:isIdentifiedByAuthority ?object.
+				?object mads:authoritativeLabel ?p
+	        }
+        UNION 
+	        {
+				?s rdf:type foaf:Person.
+				?s rdfs:label ?sortname.
+				?s mads:isIdentifiedByAuthority ?object.
+				?object mads:authoritativeLabel ?p
+	        }
         }
         <sparql:parameter var="givenname" value="${param.givenname}"/>
         <sparql:parameter var="familyName" value="${param.familyname}"/>
@@ -81,10 +73,10 @@
  </sparql:query>
 
         <table border=1>
-        <thead><tr><td>Subject</td><td>Predicate</td><td>Object</td></tr></thead>
+        <thead><tr><td>Subject</td><td>Predicate</td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-            <tr><td>${row.s}</td><td>${row.p}</td><td>${row.o}</td></tr>
+            <tr><td>${row.s}</td><td>${row.p}</td></tr>
         </c:forEach>
         </tbody>
         </table>

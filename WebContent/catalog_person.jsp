@@ -66,12 +66,14 @@
 <h2>Search Logic</h2>
 The SPARQL query wrapped by this interface currently comes as follows:
 <dl>
+<dt>Only givenname is specified or only surname is specified
+<dd>the query only specifies rdfs:label
 <dt>Both givenname and familyname specified
-<dd>the query specifies three conjunctive alternatives
+<dd>the query specifies two conjunctive alternatives
 <ul>
-    <li> schema:name = "givenName familyname"
-    <li> schema:name = "familyname, givenName"
-    <li> schema:givenName = "givenName" and schema:familyname = "familyname"
+    <li> rdfs:label = "givenName familyname"
+    <li> rdfs:label = "familyname, givenName"
+ 
 </ul>
 </dl>
 
