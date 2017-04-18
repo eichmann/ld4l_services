@@ -94,7 +94,7 @@
         <thead><tr><td>Subject</td><td>Birth Date</td><td>Death Date</td><td>Active Start</td><td>Active End</td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-            <tr><td>${row.s}</td><td>${row.b}</td><td>${row.d}</td><td>${row.as}</td><td>${row.ae}</td></tr>
+            <tr><td><a href="/dbpedia_person_doi_browse.jsp?doi="${rows.s}>${row.s}</a></td><td>${row.b}</td><td>${row.d}</td><td>${row.as}</td><td>${row.ae}</td></tr>
         </c:forEach>
         </tbody>
         </table>
