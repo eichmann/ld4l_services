@@ -39,6 +39,7 @@ WebContent/viaf_entity_browse.jsp -text
 WebContent/viaf_entity_lookup.jsp -text
 WebContent/viaf_person.jsp -text
 WebContent/viaf_person_browse.jsp -text
+WebContent/viaf_person_doi_browse.jsp -text
 WebContent/viaf_person_lookup.jsp -text
 WebContent/viaf_person_timeline.jsp -text
 /pom.xml -text
