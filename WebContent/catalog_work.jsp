@@ -59,7 +59,11 @@
 </form>
 
 <h2>Search Logic</h2>
-The SPARQL query wrapped by this interface currently makes a number of assumptions ...
+The SPARQL query wrapped by this interface currently makes following assumption.
+<dl>
+<dt>The query only specifies rdfs:label
+</dt>
+</dl>
 <!-- particularly that a fully qualified IRI is used for the entity and that -->
 <!-- the instance asserts a name predicate that can be used to identify the instance's URI: -->
 <!-- <pre> -->
