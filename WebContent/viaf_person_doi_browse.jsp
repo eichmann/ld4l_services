@@ -31,10 +31,13 @@
     <c:when test="${ not empty param.doi}">
 	    SELECT DISTINCT ?book ?name ?au
 			WHERE {
+				?book rdf:type schema:CreativeWork.
 			    ?book schema:name ?name.
 				?book schema:author ?doi.
 			  	?doi schema:name ?au.
+			  	FILTER (langMatches(lang(?name), "en"))
 			}
+			
         <sparql:parameter var="doi" value="${param.doi}" type="iri"/>
     </c:when>
     </c:choose>

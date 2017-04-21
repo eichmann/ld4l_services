@@ -25,12 +25,15 @@
     <sparql:prefix prefix="rdfs" baseURI="http://www.w3.org/2000/01/rdf-schema#"/>
     <sparql:prefix prefix="vivo" baseURI="http://vivoweb.org/ontology/core#"/>
     <sparql:prefix prefix="mads" baseURI="http://www.loc.gov/mads/rdf/v1#"/>
+    <sparql:prefix prefix="schema" baseURI="http://schema.org/"/>
+    
 </sparql:setEndpoint>
 
 <sparql:query var="result" endpoint="${ld4l}" resultType="${mode}">
 	SELECT DISTINCT ?o ?p WHERE {
-			?uri rdf:type mads:Authority .
+			?uri rdf:type rdfs:Resource.
 		    ?uri rdfs:label ?name. 
+		    ?uri rdf:type mads:Authority .
 			?uri mads:isIdentifiedByAuthority ?o.
 			?o mads:authoritativeLabel ?p
 		} 

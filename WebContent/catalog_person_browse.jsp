@@ -73,10 +73,10 @@
  </sparql:query>
 
         <table border=1>
-        <thead><tr><td>Subject</td><td>Predicate</td></tr></thead>
+        <thead><tr><td>Person</td><td>URI</td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-            <tr><td>${row.s}</td><td>${row.p}</td></tr>
+            <tr><td>${row.p}</td><td>${row.s}</td></tr>
         </c:forEach>
         </tbody>
         </table>
