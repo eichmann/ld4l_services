@@ -40,6 +40,7 @@
                OPTIONAL { ?s schema:deathDate ?d } .
                OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+          
 	       }
 	    UNION
 	       {
@@ -84,7 +85,7 @@
         <sparql:parameter var="familyName" value="${param.familyname}"/>
     </c:when>
     <c:when test="${ not empty param.givenname and not empty param.familyname }">
-        SELECT DISTINCT ?s ?n ?b ?d ?as ?ae WHERE {
+        SELECT DISTINCT ?s ?authname ?b ?d ?as ?ae WHERE {
             {
                 ?s rdf:type schema:Person .
                ?s schema:name ?n .
@@ -96,6 +97,8 @@
                 FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
                	FILTER (langMatches(lang(?givenname), "en") || LANG(?givenname="")).
                	FILTER (langMatches(lang(?familyName), "en") || LANG(?familyName="")).
+               	BIND(STR(?n) AS ?authname).
+               
             }
         UNION
             {
@@ -106,6 +109,9 @@
                 OPTIONAL { ?s schema:deathDate ?d } .
                 OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                 OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+                FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+                BIND(STR(?n) AS ?authname).
+               
             }
         UNION
             {
@@ -118,6 +124,8 @@
                 OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
                 FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
                	FILTER (langMatches(lang(?sortname), "en") || LANG(?sortname="")).
+               	BIND(STR(?n) AS ?authname).
+               	
             } 
         UNION
             {
@@ -128,11 +136,14 @@
                 OPTIONAL { ?s schema:deathDate ?d } .
                 OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                 OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+                FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+                BIND(STR(?n) AS ?authname).
+               	
             } 
         UNION
             {
                 ?s rdf:type schema:Person .
-               ?s schema:name ?n .
+                ?s schema:name ?n .
                 ?s schema:givenName ?givenname .
                 ?s schema:familyName ?familyName .
                 OPTIONAL { ?s schema:birthDate ?b } .
@@ -142,23 +153,28 @@
                 FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
                	FILTER (langMatches(lang(?givenname), "en") || LANG(?givenname="")).
                	FILTER (langMatches(lang(?familyName), "en") || LANG(?familyName="")).
+               	BIND(STR(?n) AS ?authname).
+               	
             }
         UNION
             {
                 ?s rdf:type schema:Person .
-               ?s schema:name ?n .
+                ?s schema:name ?n .
                 ?s schema:givenName ?givenname@en .
                 ?s schema:familyName ?familyName@en .
                 OPTIONAL { ?s schema:birthDate ?b } .
                 OPTIONAL { ?s schema:deathDate ?d } .
                 OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                 OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+                FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+                BIND(STR(?n) AS ?authname).
+               
             }
 <c:if test="${ not empty param.alternatename }">
        UNION
              {
                 ?s rdf:type schema:Person .
-               ?s schema:name ?n .
+                ?s schema:name ?n .
                 ?s schema:alternateName ?name .
                 OPTIONAL { ?s schema:birthDate ?b } .
                 OPTIONAL { ?s schema:deathDate ?d } .
@@ -168,7 +184,7 @@
         UNION
             {
                 ?s rdf:type schema:Person .
-               ?s schema:name ?n .
+                ?s schema:name ?n .
                 ?s schema:alternateName ?name@en .
                 OPTIONAL { ?s schema:birthDate ?b } .
                 OPTIONAL { ?s schema:deathDate ?d } .
@@ -209,7 +225,7 @@
         <thead><tr><td>Subject</td><td>Name</td><td>Birth Date</td><td>Death Date</td><td>Active Start</td><td>Active End</td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-            <tr><td><a href="/ld4l_services/viaf_person_doi_browse.jsp?doi=${row.s}">${row.s}</a></td><td>${row.n}</td><td>${row.b}</td><td>${row.d}</td><td>${row.as}</td><td>${row.ae}</td></tr>
+            <tr><td><a href="/ld4l_services/viaf_person_doi_browse.jsp?doi=${row.s}">${row.s}</a></td><td>${row.authname}</td><td>${row.b}</td><td>${row.d}</td><td>${row.as}</td><td>${row.ae}</td></tr>
         </c:forEach>
         </tbody>
         </table>
