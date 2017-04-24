@@ -34,6 +34,8 @@
 	           ?s rdf:type schema:Person .
 	           ?s schema:name ?n .
                ?s schema:givenName ?givenname .
+               FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+       			FILTER (langMatches(lang(?givenname), "en") || LANG(?givenname="")).
                OPTIONAL { ?s schema:birthDate ?b } .
                OPTIONAL { ?s schema:deathDate ?d } .
                OPTIONAL { ?s schema:activeYearsStartYear ?as } .
@@ -48,8 +50,10 @@
                OPTIONAL { ?s schema:deathDate ?d } .
                OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+               FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+               FILTER (langMatches(lang(?givenname), "en") || LANG(?givenname="")).
 	       }
-	    }
+	    } group by ?s
         <sparql:parameter var="givenname" value="${param.givenname}"/>
     </c:when>
     <c:when test="${ empty param.givenname and not empty param.familyname }">
@@ -62,6 +66,8 @@
                OPTIONAL { ?s schema:deathDate ?d } .
                OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+               FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+               FILTER (langMatches(lang(?familyName), "en") || LANG(?familyName="")).
            }
         UNION
            {
@@ -73,6 +79,7 @@
                OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
            }
+           
         }
         <sparql:parameter var="familyName" value="${param.familyname}"/>
     </c:when>
@@ -86,6 +93,9 @@
                 OPTIONAL { ?s schema:deathDate ?d } .
                 OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                 OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+                FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+               	FILTER (langMatches(lang(?givenname), "en") || LANG(?givenname="")).
+               	FILTER (langMatches(lang(?familyName), "en") || LANG(?familyName="")).
             }
         UNION
             {
@@ -106,6 +116,8 @@
                 OPTIONAL { ?s schema:deathDate ?d } .
                 OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                 OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+                FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+               	FILTER (langMatches(lang(?sortname), "en") || LANG(?sortname="")).
             } 
         UNION
             {
@@ -127,6 +139,9 @@
                 OPTIONAL { ?s schema:deathDate ?d } .
                 OPTIONAL { ?s schema:activeYearsStartYear ?as } .
                 OPTIONAL { ?s schema:activeYearsEndYear ?ae } .
+                FILTER (langMatches(lang(?n), "en") || LANG(?n="")).
+               	FILTER (langMatches(lang(?givenname), "en") || LANG(?givenname="")).
+               	FILTER (langMatches(lang(?familyName), "en") || LANG(?familyName="")).
             }
         UNION
             {

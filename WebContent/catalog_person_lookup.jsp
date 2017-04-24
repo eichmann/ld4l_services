@@ -41,6 +41,7 @@
 				?s rdfs:label ?name.
 				?s mads:isIdentifiedByAuthority ?object.
 				?object mads:authoritativeLabel ?p
+				FILTER (langMatches(lang(?name), "en"))
 	        }
         UNION 
 	        {
@@ -48,6 +49,7 @@
 				?s rdfs:label ?sortname.
 				?s mads:isIdentifiedByAuthority ?object.
 				?object mads:authoritativeLabel ?p
+				FILTER (langMatches(lang(?sortname), "en"))
 	        }
         }
         

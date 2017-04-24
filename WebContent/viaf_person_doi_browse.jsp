@@ -29,14 +29,17 @@
 <sparql:query var="result" endpoint="${ld4l}" resultType="${mode}">
     <c:choose>
     <c:when test="${ not empty param.doi}">
-	    SELECT DISTINCT ?book ?name ?au
+	    SELECT DISTINCT ?book ?altname ?date
 			WHERE {
 				?book rdf:type schema:CreativeWork.
 			    ?book schema:name ?name.
 				?book schema:author ?doi.
 			  	?doi schema:name ?au.
-			  	FILTER (langMatches(lang(?name), "en"))
-			} ORDER BY ?name
+				FILTER (langMatches(lang(?au), "en") || LANG(?au="")).
+			  	?book schema:alternateName ?altname.
+			  	?book schema:dateCreated ?date.
+			  	BIND(STR(?au) AS ?authname).
+			} order by ?altname ?date 
 			
         <sparql:parameter var="doi" value="${param.doi}" type="iri"/>
     </c:when>
@@ -47,10 +50,10 @@
 			  FILTER (langMatches(lang(?title), "en")) .
  -->
         <table border=1>
-        <thead><tr><td>Author</td><td>Book</td></tr></thead>
+        <thead><tr><td>Book</td> <td> Publication Date</td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-            <tr><td>${row.au}</td><td><a href="${row.book}">${row.name}</a></td></tr>
+            <tr><td><a href="${row.book}">${row.altname}</a></td> <td>${row.date}</td></tr>
         </c:forEach>
         </tbody>
         </table>
