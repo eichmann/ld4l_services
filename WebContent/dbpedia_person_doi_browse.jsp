@@ -41,7 +41,7 @@
 			  ?book dbp:author ?doi.
 			  ?doi foaf:name ?au.
 			  ?book dbp:name ?name.
-			}
+			} ORDER by ?name
 	    <sparql:parameter var="doi" value="${param.doi}" type='iri'/>
     </c:when>
 

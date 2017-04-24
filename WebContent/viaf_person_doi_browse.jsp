@@ -36,7 +36,7 @@
 				?book schema:author ?doi.
 			  	?doi schema:name ?au.
 			  	FILTER (langMatches(lang(?name), "en"))
-			}
+			} ORDER BY ?name
 			
         <sparql:parameter var="doi" value="${param.doi}" type="iri"/>
     </c:when>

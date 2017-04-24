@@ -15,7 +15,11 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-Welcome to the home for the reconciliation services for the LD4L Labs project.
+<c:catch var="exception">
+    <jsp:include page="local_index.jsp"/>
+</c:catch>
+<p><p>
+This webapp is the home for the reconciliation services for the LD4L Labs project.
 Select a data source from the list on the left.
 <jsp:include page="/footer.jsp" flush="true" />
 </div>

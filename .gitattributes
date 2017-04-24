@@ -31,7 +31,11 @@ WebContent/dbpedia_person_timeline.jsp -text
 WebContent/footer.jsp -text
 WebContent/header.jsp -text
 WebContent/images/bullet-l1.gif -text
+WebContent/images/leo.png -text
 WebContent/index.jsp -text
+WebContent/local_index.jsp -text
+WebContent/local_menu_end.jsp -text
+WebContent/local_menu_home.jsp -text
 WebContent/menu.jsp -text
 WebContent/resources/style.css -text
 WebContent/viaf_entity.jsp -text

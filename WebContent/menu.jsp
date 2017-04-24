@@ -18,4 +18,7 @@
 <li><a href="<util:applicationRoot/>/catalog_work.jsp">By Work</a>
 <li><a href="<util:applicationRoot/>/catalog_person.jsp">By Person</a>
 </ul>
+<c:catch var="exception">
+    <jsp:include page="local_menu_end.jsp"/>
+</c:catch>
 </div>
