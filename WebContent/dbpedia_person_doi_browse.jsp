@@ -34,14 +34,13 @@
     <c:choose>
     <c:when test="${ not empty param.doi }">
     
-	    SELECT ?book ?name ?date ?au
+	    SELECT ?book ?name ?date
 			WHERE {
 			  ?book rdf:type dbo:Book .
 			  ?book dbp:releaseDate ?date.
 			  ?book dbp:author ?doi.
-			  ?doi foaf:name ?au.
 			  ?book dbp:name ?name.
-			} ORDER by ?name
+			} ORDER by ?${param.order}
 	    <sparql:parameter var="doi" value="${param.doi}" type='iri'/>
     </c:when>
 
@@ -49,10 +48,10 @@
  </sparql:query>
 
         <table border=1>
-        <thead><tr><td>Author</td><td>Book</td><td>Publication Date</td></tr></thead>
+        <thead><tr><td><a href="dbpedia_person_doi_browse.jsp?doi=${param.doi}&order=name">Book</a></td><td><a href="dbpedia_person_doi_browse.jsp?doi=${param.doi}&order=date">Publication Date</a></td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-            <tr><td>${row.au}</td><td><a href="${row.book}">${row.name}</a></td><td>${row.date}</td></tr>
+            <tr><td><a href="${row.book}">${row.name}</a></td><td>${row.date}</td></tr>
         </c:forEach>
         </tbody>
         </table>

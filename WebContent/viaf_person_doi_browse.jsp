@@ -39,7 +39,7 @@
 			  	?book schema:alternateName ?altname.
 			  	?book schema:dateCreated ?date.
 			  	BIND(STR(?au) AS ?authname).
-			} order by ?altname ?date 
+			} order by ?${param.order} 
 			
         <sparql:parameter var="doi" value="${param.doi}" type="iri"/>
     </c:when>
@@ -50,7 +50,7 @@
 			  FILTER (langMatches(lang(?title), "en")) .
  -->
         <table border=1>
-        <thead><tr><td>Book</td> <td> Publication Date</td></tr></thead>
+        <thead><tr><td><a href="viaf_person_doi_browse.jsp?doi=${param.doi}&order=altname+?date">Book</a></td> <td><a href="viaf_person_doi_browse.jsp?doi=${param.doi}&order=date+?altname">Publication Date</a></td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
             <tr><td><a href="${row.book}">${row.altname}</a></td> <td>${row.date}</td></tr>

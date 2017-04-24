@@ -225,7 +225,7 @@
         <thead><tr><td>Subject</td><td>Name</td><td>Birth Date</td><td>Death Date</td><td>Active Start</td><td>Active End</td></tr></thead>
         <tbody>
         <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-            <tr><td><a href="/ld4l_services/viaf_person_doi_browse.jsp?doi=${row.s}">${row.s}</a></td><td>${row.authname}</td><td>${row.b}</td><td>${row.d}</td><td>${row.as}</td><td>${row.ae}</td></tr>
+            <tr><td><a href="/ld4l_services/viaf_person_doi_browse.jsp?doi=${row.s}&order=altname+?date">${row.s}</a></td><td>${row.authname}</td><td>${row.b}</td><td>${row.d}</td><td>${row.as}</td><td>${row.ae}</td></tr>
         </c:forEach>
         </tbody>
         </table>
