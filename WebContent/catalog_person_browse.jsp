@@ -29,7 +29,7 @@
 
 <sparql:query var="result" endpoint="${ld4l}" resultType="${mode}">
     <c:choose>
-     <c:when test="${ not empty param.givenname and empty param.surname }">
+     <c:when test="${ not empty param.givenname and empty param.familyname }">
          SELECT DISTINCT ?s ?p WHERE {
 			?s rdf:type foaf:Person.
 			?s rdfs:label ?givenname.
@@ -38,32 +38,30 @@
         }
         <sparql:parameter var="givenname" value="${param.givenname}"/>
     </c:when>
-    <c:when test="${ empty param.givenname and not empty param.surname }">
+    <c:when test="${ empty param.givenname and not empty param.familyname }">
          SELECT DISTINCT ?s ?p WHERE {
 			?s rdf:type foaf:Person.
-			?s rdfs:label ?surname.
+			?s rdfs:label ?familyname.
 			?s mads:isIdentifiedByAuthority ?object.
 			?object mads:authoritativeLabel ?p
         }
-        <sparql:parameter var="surname" value="${param.surname}"/>
+        <sparql:parameter var="familyname" value="${param.familyname}"/>
     </c:when>
     
     <c:when test="${ not empty param.givenname and not empty param.familyname }">
         SELECT DISTINCT ?s ?p WHERE {
 	        {
 				?s rdf:type foaf:Person.
-				?s rdfs:label ?name.
-				?s mads:isIdentifiedByAuthority ?object.
-				?object mads:authoritativeLabel ?p
+				?s foaf:name ?name.
+                ?s foaf:name ?p.
 	        }
         UNION 
 	        {
 				?s rdf:type foaf:Person.
-				?s rdfs:label ?sortname.
-				?s mads:isIdentifiedByAuthority ?object.
-				?object mads:authoritativeLabel ?p
+				?s foaf:name ?sortname.
+                ?s foaf:name ?p.
 	        }
-        }
+        } order by ?p ?uri
         <sparql:parameter var="givenname" value="${param.givenname}"/>
         <sparql:parameter var="familyName" value="${param.familyname}"/>
         <sparql:parameter var="name" value="${param.givenname} ${param.familyname}"/>
