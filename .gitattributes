@@ -10,6 +10,7 @@
 .settings/org.eclipse.wst.jsdt.ui.superType.name -text
 .settings/org.eclipse.wst.validation.prefs -text
 WebContent/META-INF/MANIFEST.MF -text
+WebContent/WEB-INF/lib/java-cup-0.11a-beta-20060608-runtime.jar -text svneol=unset#application/java-archive
 WebContent/WEB-INF/web.xml -text
 WebContent/catalog_person.jsp -text
 WebContent/catalog_person_browse.jsp -text
@@ -33,6 +34,8 @@ WebContent/header.jsp -text
 WebContent/images/bullet-l1.gif -text
 WebContent/images/leo.png -text
 WebContent/index.jsp -text
+WebContent/loc_name.jsp -text
+WebContent/loc_name_browse.jsp -text
 WebContent/local_index.jsp -text
 WebContent/local_menu_end.jsp -text
 WebContent/local_menu_home.jsp -text

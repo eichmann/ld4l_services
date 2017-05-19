@@ -8,6 +8,11 @@
 <li><a href="<util:applicationRoot/>/dbpedia_entity.jsp">By Entity</a>
 <li><a href="<util:applicationRoot/>/dbpedia_person.jsp">By Person</a>
 </ul>
+<h3>Library of Congress</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/loc_name.jsp">By Name</a>
+<li><a href="<util:applicationRoot/>/loc_subject.jsp">By Subject</a>
+</ul>
 <h3>VIAF</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/viaf_entity.jsp">By Entity</a>
