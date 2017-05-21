@@ -29,6 +29,9 @@ WebContent/dbpedia_person_browse.jsp -text
 WebContent/dbpedia_person_doi_browse.jsp -text
 WebContent/dbpedia_person_lookup.jsp -text
 WebContent/dbpedia_person_timeline.jsp -text
+WebContent/fast.jsp -text
+WebContent/fast_browse.jsp -text
+WebContent/fast_lookup.jsp -text
 WebContent/footer.jsp -text
 WebContent/header.jsp -text
 WebContent/images/bullet-l1.gif -text
@@ -36,6 +39,10 @@ WebContent/images/leo.png -text
 WebContent/index.jsp -text
 WebContent/loc_name.jsp -text
 WebContent/loc_name_browse.jsp -text
+WebContent/loc_name_lookup.jsp -text
+WebContent/loc_subject.jsp -text
+WebContent/loc_subject_browse.jsp -text
+WebContent/loc_subject_lookup.jsp -text
 WebContent/local_index.jsp -text
 WebContent/local_menu_end.jsp -text
 WebContent/local_menu_home.jsp -text

@@ -16,9 +16,9 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-<h2>LoC Search by Name</h2>
+<h2>LoC Search by Subject</h2>
 
-			<form method='POST' action='loc_name.jsp'>
+			<form method='POST' action='loc_subject.jsp'>
 				<input name="query" value="${param.query}" size=50> <input
 					type=submit name=submitButton value=Search><br>
                 <fieldset><legend>Result Format?</legend>
@@ -34,7 +34,7 @@
 				</h3>
 				<c:choose>
 					<c:when test="${param.mode == 'triple'}">
-						<lucene:search lucenePath="/Volumes/Pegasus2/LD4L/lucene/loc/names"
+						<lucene:search lucenePath="/Volumes/Pegasus2/LD4L/lucene/loc/subjects"
 							label="content" queryParserName="boolean"
 							queryString="${param.query}">
 							<p>
@@ -43,13 +43,13 @@
 							</p>
 							<ol class="bulletedList">
 								<lucene:searchIterator>
-                                   <li><a href="loc_name_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
+                                   <li><a href="loc_subject_lookup.jsp?uri=<lucene:hit label="uri" />&subject=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
  								</lucene:searchIterator>
 							</ol>
 						</lucene:search>
 					</c:when>
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
-                        <lucene:search lucenePath="/Volumes/Pegasus2/LD4L/lucene/loc/names"
+                        <lucene:search lucenePath="/Volumes/Pegasus2/LD4L/lucene/loc/subjects"
                             label="content" queryParserName="boolean"
                             queryString="${param.query}">
                             <p>
@@ -58,7 +58,7 @@
                             </p>
                             <ol class="bulletedList">
                                 <lucene:searchIterator>
-                                    <li><a href="loc_name_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
+                                    <li><a href="loc_subject_browse.jsp?uri=<lucene:hit label="uri" />&subject=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
                                 </lucene:searchIterator>
                             </ol>
                         </lucene:search>

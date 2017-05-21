@@ -18,6 +18,10 @@
 <li><a href="<util:applicationRoot/>/viaf_entity.jsp">By Entity</a>
 <li><a href="<util:applicationRoot/>/viaf_person.jsp">By Person</a>
 </ul>
+<h3>FAST</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/fast.jsp">By Entity</a>
+</ul>
 <h3>Catalog</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/catalog_work.jsp">By Work</a>
