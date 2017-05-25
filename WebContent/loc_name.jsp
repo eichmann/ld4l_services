@@ -17,7 +17,8 @@
 </jsp:include>
 <div id="centerCol">
 <h2>LoC Search by Name</h2>
-
+<!-- http://guardian.slis.uiowa.edu:8080/ld4l_services/loc_name_search.jsp?q=twain&maximumRecords=3&language=en -->
+<!-- http://guardian.slis.uiowa.edu:8080/ld4l_services/loc_name_search.jsp?q=twain&maximumRecords=3&language=en&type=personalName -->
 			<form method='POST' action='loc_name.jsp'>
 				<input name="query" value="${param.query}" size=50> <input
 					type=submit name=submitButton value=Search><br>
