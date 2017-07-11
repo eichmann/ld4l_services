@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+<%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
+
+<c:choose>
+	<c:when test="${param.entity == 'PersonalName'}">
+		<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/persons" />
+	</c:when>
+	<c:when test="${param.entity == 'CorporateName'}">
+		<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/organizations" />
+	</c:when>
+	<c:when test="${param.entity == 'Title'}">
+		<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/titles" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/names" />
+	</c:otherwise>
+</c:choose>
+
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}">
+	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}">
+       <c:set var="uri"><lucene:hit label="uri" /></c:set>
+<${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
+	   <jsp:include page="loc_name_lookup.jsp">
+	       <jsp:param value="${uri}" name="uri"/>
+	   </jsp:include>
+	</lucene:searchIterator>
+</lucene:search>
