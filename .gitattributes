@@ -42,6 +42,7 @@ WebContent/loc_name_batch.jsp -text
 WebContent/loc_name_browse.jsp -text
 WebContent/loc_name_lookup.jsp -text
 WebContent/loc_subject.jsp -text
+WebContent/loc_subject_batch.jsp -text
 WebContent/loc_subject_browse.jsp -text
 WebContent/loc_subject_lookup.jsp -text
 WebContent/local_index.jsp -text
