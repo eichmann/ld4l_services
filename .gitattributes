@@ -37,6 +37,10 @@ WebContent/header.jsp -text
 WebContent/images/bullet-l1.gif -text
 WebContent/images/leo.png -text
 WebContent/index.jsp -text
+WebContent/loc_genre.jsp -text
+WebContent/loc_genre_batch.jsp -text
+WebContent/loc_genre_browse.jsp -text
+WebContent/loc_genre_lookup.jsp -text
 WebContent/loc_name.jsp -text
 WebContent/loc_name_batch.jsp -text
 WebContent/loc_name_browse.jsp -text

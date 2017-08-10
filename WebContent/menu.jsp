@@ -10,6 +10,7 @@
 </ul>
 <h3>Library of Congress</h3>
 <ul>
+<li><a href="<util:applicationRoot/>/loc_genre.jsp">By Genre</a>
 <li><a href="<util:applicationRoot/>/loc_name.jsp">By Name</a>
 <li><a href="<util:applicationRoot/>/loc_subject.jsp">By Subject</a>
 </ul>
