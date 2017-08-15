@@ -5,16 +5,16 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'PersonalName'}">
-		<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/persons" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/persons" />
 	</c:when>
 	<c:when test="${param.entity == 'CorporateName'}">
-		<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/organizations" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/organizations" />
 	</c:when>
 	<c:when test="${param.entity == 'Title'}">
-		<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/titles" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/titles" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/names" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names" />
 	</c:otherwise>
 </c:choose>
 

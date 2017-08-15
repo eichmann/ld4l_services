@@ -41,7 +41,7 @@
                     Search Results:
                     <c:out value="${param.query}" />
                 </h3>
-                <c:set var="index" value="/Volumes/Pegasus2/LD4L/lucene/fast"/>
+                <c:set var="index" value="/usr/local/RAID/LD4L/lucene/fast"/>
                 <c:choose>
                     <c:when test="${param.entity == 'work'}">
                         <lucene:search lucenePath="${index}/work"

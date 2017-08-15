@@ -3,7 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
 
-<c:set var="LuceneIndex" value="/Volumes/Pegasus2/LD4L/lucene/loc/subjects" />
+<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/subjects" />
 
 <lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}">

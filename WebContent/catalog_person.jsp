@@ -40,10 +40,10 @@
             <td>
                 <fieldset><legend>Catalog</legend>
                     <select name="catalog">
-                        <option value="http://guardian.slis.uiowa.edu:3030/combined/sparql">Combined</option>
-                        <option value="http://guardian.slis.uiowa.edu:3030/cornell/sparql">Cornell</option>
-                        <option value="http://guardian.slis.uiowa.edu:3030/harvard/sparql">Harvard</option>
-					    <option value="http://guardian.slis.uiowa.edu:3030/stanford/sparql">Stanford</option>
+                        <option value="http://services.ld4l.org/fuseki/combined/sparql">Combined</option>
+                        <option value="http://services.ld4l.org/fuseki/cornell/sparql">Cornell</option>
+                        <option value="http://services.ld4l.org/fuseki/harvard/sparql">Harvard</option>
+					    <option value="http://services.ld4l.org/fuseki/stanford/sparql">Stanford</option>
                     </select>
                 </fieldset>
             </td>

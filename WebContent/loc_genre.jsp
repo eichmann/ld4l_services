@@ -34,7 +34,7 @@
 				</h3>
 				<c:choose>
 					<c:when test="${param.mode == 'triple'}">
-						<lucene:search lucenePath="/Volumes/Pegasus2/LD4L/lucene/loc/genre"
+						<lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/genre"
 							label="content" queryParserName="boolean"
 							queryString="${param.query}">
 							<p>
@@ -49,7 +49,7 @@
 						</lucene:search>
 					</c:when>
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
-                        <lucene:search lucenePath="/Volumes/Pegasus2/LD4L/lucene/loc/genre"
+                        <lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/genre"
                             label="content" queryParserName="boolean"
                             queryString="${param.query}">
                             <p>
