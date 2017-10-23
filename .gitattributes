@@ -34,6 +34,8 @@ WebContent/fast_batch.jsp -text
 WebContent/fast_browse.jsp -text
 WebContent/fast_lookup.jsp -text
 WebContent/footer.jsp -text
+WebContent/geonames_batch.jsp -text
+WebContent/geonames_lookup.jsp -text
 WebContent/header.jsp -text
 WebContent/images/bullet-l1.gif -text
 WebContent/images/leo.png -text
