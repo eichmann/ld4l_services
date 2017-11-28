@@ -9,8 +9,15 @@
 	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
-	   <jsp:include page="loc_genre_lookup.jsp">
-	       <jsp:param value="${uri}" name="uri"/>
-	   </jsp:include>
+        <c:if test="${empty param.context}">
+            <jsp:include page="loc_genre_lookup.jsp">
+                <jsp:param value="${uri}" name="uri"/>
+            </jsp:include>
+        </c:if>
+        <c:if test="${not empty param.context}">
+            <jsp:include page="loc_genre_context.jsp">
+                <jsp:param value="${uri}" name="uri"/>
+            </jsp:include>
+        </c:if>
 	</lucene:searchIterator>
 </lucene:search>
