@@ -5,25 +5,16 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'Person'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/person" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/person" />
 	</c:when>
 	<c:when test="${param.entity == 'Organization'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/organization" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/organizations" />
 	</c:when>
-	<c:when test="${param.entity == 'GeoCoordinates'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/geo" />
+	<c:when test="${param.entity == 'Work'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/work" />
 	</c:when>
-    <c:when test="${param.entity == 'Intangible'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/intangible" />
-    </c:when>
-    <c:when test="${param.entity == 'Place'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/place" />
-    </c:when>
-    <c:when test="${param.entity == 'Work'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/work" />
-    </c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/person" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/person" />
 	</c:otherwise>
 </c:choose>
 
@@ -31,7 +22,7 @@
 	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
-	   <jsp:include page="fast_lookup.jsp">
+	   <jsp:include page="dbpedia_name_lookup.jsp">
 	       <jsp:param value="${uri}" name="uri"/>
 	   </jsp:include>
 	</lucene:searchIterator>

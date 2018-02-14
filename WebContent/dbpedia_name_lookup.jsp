@@ -3,7 +3,7 @@
 <%@ taglib prefix="sparql" uri="http://slis.uiowa.edu/SPARQL"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<sparql:setEndpoint var="ld4l" sparqlURL="http://services.ld4l.org/fuseki/fast/sparql">
+<sparql:setEndpoint var="ld4l" sparqlURL="http://services.ld4l.org/fuseki/dbpedia/sparql">
     <sparql:prefix prefix="foaf" baseURI="http://xmlns.com/foaf/0.1/"/>
     <sparql:prefix prefix="bibo" baseURI="http://purl.org/ontology/bibo/"/>
     <sparql:prefix prefix="rdf"  baseURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
@@ -30,5 +30,5 @@
 </sparql:query>
 
 <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-<${param.uri}> ${row.p} ${row.o} .
+${row.s} ${row.p} ${row.o} .
 </c:forEach>

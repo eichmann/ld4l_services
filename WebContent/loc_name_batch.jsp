@@ -4,13 +4,13 @@
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
 
 <c:choose>
-	<c:when test="${param.entity == 'PersonalName'}">
+	<c:when test="${param.entity == 'Person'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/persons" />
 	</c:when>
-	<c:when test="${param.entity == 'CorporateName'}">
+	<c:when test="${param.entity == 'Organization'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/organizations" />
 	</c:when>
-	<c:when test="${param.entity == 'Title'}">
+	<c:when test="${param.entity == 'Work'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/titles" />
 	</c:when>
 	<c:otherwise>

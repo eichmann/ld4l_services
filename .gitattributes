@@ -24,6 +24,8 @@ WebContent/dbpedia_entity.jsp -text
 WebContent/dbpedia_entity_browse.jsp -text
 WebContent/dbpedia_entity_lookup.jsp -text
 WebContent/dbpedia_lookup.jsp -text
+WebContent/dbpedia_name_batch.jsp -text
+WebContent/dbpedia_name_lookup.jsp -text
 WebContent/dbpedia_person.jsp -text
 WebContent/dbpedia_person_browse.jsp -text
 WebContent/dbpedia_person_doi_browse.jsp -text
