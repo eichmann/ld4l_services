@@ -23,6 +23,10 @@
 <ul>
 <li><a href="<util:applicationRoot/>/fast.jsp">By Entity</a>
 </ul>
+<h3>NALT</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/nalt.jsp">By Concept</a>
+</ul>
 <h3>Catalog</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/catalog_work.jsp">By Work</a>

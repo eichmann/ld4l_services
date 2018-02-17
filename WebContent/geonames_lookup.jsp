@@ -18,7 +18,9 @@
       OPTIONAL {
         ?o ?q ?r
         FILTER (isBlank(?o))
+        <c:if test="${not empty param.lang}">FILTER(!isLiteral(?r) || lang(?r) = "" || langMatches(lang(?r), "${param.lang}"))</c:if>
       }
+      <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
     }
     <sparql:parameter var="s" value="${param.uri}" type="IRI" />
 </sparql:construct>

@@ -15,6 +15,7 @@
 <sparql:query var="result" endpoint="${ld4l}" resultType="triple">
 	SELECT DISTINCT ?p ?o WHERE {
 		?s ?p ?o
+      <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
 	}
 	<sparql:parameter var="s" value="${param.uri}" type="IRI" />
  </sparql:query>

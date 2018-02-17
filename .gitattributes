@@ -59,6 +59,10 @@ WebContent/local_index.jsp -text
 WebContent/local_menu_end.jsp -text
 WebContent/local_menu_home.jsp -text
 WebContent/menu.jsp -text
+WebContent/nalt.jsp -text
+WebContent/nalt_batch.jsp -text
+WebContent/nalt_browse.jsp -text
+WebContent/nalt_lookup.jsp -text
 WebContent/resources/style.css -text
 WebContent/viaf_entity.jsp -text
 WebContent/viaf_entity_browse.jsp -text
