@@ -17,12 +17,14 @@
             ?s ?p ?o .
             ?s rdf:type ?entity.
             ?s <http://xmlns.com/foaf/0.1/name> ?name@en .
+            <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
         }
     UNION
         {
             ?s ?p ?o .
             ?s rdf:type ?entity.
             ?s <http://schema.org/name> ?name@en .
+            <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
         }
     } ORDER BY ?s ?p ?o
     <sparql:parameter var="entity" value="${param.entity}" type="iri"/>

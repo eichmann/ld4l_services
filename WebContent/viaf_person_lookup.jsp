@@ -19,12 +19,14 @@
 	           ?s ?p ?o .
 	           ?s rdf:type schema:Person .
 	           ?s schema:givenName ?givenname .
+               <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
 	       }
 	    UNION
 	       {
                ?s ?p ?o .
                ?s rdf:type schema:Person .
                ?s schema:givenName ?givenname@en .
+               <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
 	       }
 	    }
         <sparql:parameter var="givenname" value="${param.givenname}"/>
@@ -35,12 +37,14 @@
                 ?s ?p ?o .
                 ?s rdf:type schema:Person.
                 ?s schema:familyName ?familyName .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
            }
         UNION
            {
                 ?s ?p ?o .
                 ?s rdf:type schema:Person.
                 ?s schema:familyName ?familyName@en .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
            }
         }
         <sparql:parameter var="familyName" value="${param.familyname}"/>
@@ -51,24 +55,28 @@
                 ?s ?p ?o .
                 ?s rdf:type schema:Person .
                 ?s schema:name ?name .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             }
         UNION
             {
                 ?s ?p ?o .
                 ?s rdf:type schema:Person .
                 ?s schema:name ?name@en .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             }
         UNION
             {
                 ?s ?p ?o .
                 ?s rdf:type schema:Person .
                 ?s schema:name ?sortname .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             } 
         UNION
             {
                 ?s ?p ?o .
                 ?s rdf:type schema:Person .
                 ?s schema:name ?sortname@en .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             } 
         UNION
             {
@@ -76,6 +84,7 @@
                 ?s rdf:type schema:Person .
                 ?s schema:givenName ?givenname .
                 ?s schema:familyName ?familyName .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             }
         UNION
             {
@@ -90,24 +99,28 @@
                 ?s ?p ?o .
                 ?s rdf:type schema:Person .
                 ?s schema:alternateName ?name .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             }
         UNION
             {
                 ?s ?p ?o .
                 ?s rdf:type schema:Person .
                 ?s schema:alternateName ?name@en .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             }
         UNION
             {
                 ?s ?p ?o .
                 ?s rdf:type schema:Person .
                 ?s schema:alternateName ?sortname .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             } 
         UNION
             {
                 ?s ?p ?o .
                 ?s rdf:type schema:Person .
                 ?s schema:alternateName ?sortname@en .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             } 
 </c:if>
         }

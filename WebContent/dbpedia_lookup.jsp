@@ -15,6 +15,7 @@
         ?s ?p ?o .
         ?s rdf:type ?entity.
         ?s <http://xmlns.com/foaf/0.1/name> ?name@en .
+      <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
     }
     <sparql:parameter var="entity" value="http://xmlns.com/foaf/0.1/${param.entity}" type="iri" />
 	<sparql:parameter var="name" value="${param.name}" />

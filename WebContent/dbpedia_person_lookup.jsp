@@ -18,6 +18,7 @@
 	        ?s ?p ?o .
 	        ?s rdf:type foaf:Person.
 	        ?s foaf:givenName ?givenname@en .
+            <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
 	    }
         <sparql:parameter var="givenname" value="${param.givenname}"/>
     </c:when>
@@ -26,6 +27,7 @@
             ?s ?p ?o .
             ?s rdf:type foaf:Person.
             ?s foaf:surname ?surname@en .
+            <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
         }
         <sparql:parameter var="surname" value="${param.surname}"/>
     </c:when>
@@ -35,12 +37,14 @@
                 ?s ?p ?o .
                 ?s rdf:type foaf:Person .
                 ?s foaf:name ?name@en .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             }
         UNION
             {
                 ?s ?p ?o .
                 ?s rdf:type foaf:Person .
                 ?s foaf:name ?sortname@en .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             } 
         UNION
             {
@@ -48,6 +52,7 @@
                 ?s rdf:type foaf:Person .
                 ?s foaf:givenName ?givenname@en .
                 ?s foaf:surname ?surname@en .
+                <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
             }
         }
         <sparql:parameter var="givenname" value="${param.givenname}"/>
