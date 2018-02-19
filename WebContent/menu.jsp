@@ -27,6 +27,10 @@
 <ul>
 <li><a href="<util:applicationRoot/>/nalt.jsp">By Concept</a>
 </ul>
+<h3>Agrovoc</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/agrovoc.jsp">By Concept</a>
+</ul>
 <h3>Catalog</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/catalog_work.jsp">By Work</a>
