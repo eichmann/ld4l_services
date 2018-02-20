@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>LD4L LoC Services</title>
+<title>LD4L NALT Services</title>
 <style type="text/css" media="all">    @import "/ld4l_services/resources/style.css";</style>
 </head>
 <body>
@@ -16,7 +16,7 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-<h2>NACL Search</h2>
+<h2>NALT Search</h2>
             <form method='POST' action='nalt.jsp'>
                 <input name="query" value="${param.query}" size=50> <input
                     type=submit name=submitButton value=Search><br>
