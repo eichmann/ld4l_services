@@ -13,11 +13,14 @@
 </sparql:setEndpoint>
 
 <sparql:construct var="graph" endpoint="${ld4l}">
-    CONSTRUCT { ?s ?p ?o . ?o ?q ?r } WHERE {
+    CONSTRUCT { ?s ?p ?o . ?o ?q ?r . ?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?label } WHERE {
       ?s ?p ?o .
       OPTIONAL {
         ?o ?q ?r
         <c:if test="${not empty param.lang}">FILTER(!isLiteral(?r) || lang(?r) = "" || langMatches(lang(?r), "${param.lang}"))</c:if>
+      }
+      OPTIONAL {
+      ?s rdfs:label ?label
       }
       <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
     }
