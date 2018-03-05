@@ -26,11 +26,12 @@
                </fieldset>
                 <fieldset><legend>Entity?</legend>
                 <input type="radio" id="1" name="entity" value="work" <c:if test="${param.entity == 'work'}">checked</c:if>>  CreativeWork
-                <input type="radio" id="2" name="entity" value="geo" <c:if test="${param.entity == 'geo'}">checked</c:if>>  GeoCoordinates
-                <input type="radio" id="3" name="entity" value="intangible" <c:if test="${param.entity == 'intangible'}">checked</c:if>>  Intangible
-                <input type="radio" id="4" name="entity" value="organization" <c:if test="${param.entity == 'organization'}">checked</c:if>>  Organization
-                <input type="radio" id="5" name="entity" value="person" <c:if test="${param.entity == 'person' or empty param.mode}">checked</c:if>> Person
-                <input type="radio" id="6" name="entity" value="place" <c:if test="${param.entity == 'place'}">checked</c:if>>  Place
+                <input type="radio" id="2" name="entity" value="intangible" <c:if test="${param.entity == 'intangible'}">checked</c:if>>  Intangible
+                <input type="radio" id="3" name="entity" value="organization" <c:if test="${param.entity == 'organization'}">checked</c:if>>  Organization
+                <input type="radio" id="4" name="entity" value="person" <c:if test="${param.entity == 'person' or empty param.mode}">checked</c:if>> Person
+                <input type="radio" id="5" name="entity" value="place" <c:if test="${param.entity == 'place'}">checked</c:if>>  Place
+                <input type="radio" id="6" name="entity" value="concept" <c:if test="${param.entity == 'concept'}">checked</c:if>>  Concept
+                <input type="radio" id="7" name="entity" value="event" <c:if test="${param.entity == 'event'}">checked</c:if>>  Event
                </fieldset>
             </form>
             Boolean operators include &amp; (and), | (or) and ! (not).
@@ -133,6 +134,50 @@
                     </c:when>
                     <c:when test="${param.entity == 'place'}">
                         <lucene:search lucenePath="${index}/place"
+                            label="content" queryParserName="boolean"
+                            queryString="${param.query}">
+                            <p>
+                                Result Count:
+                                <lucene:count />
+                            </p>
+                            <ol class="bulletedList">
+                                <lucene:searchIterator>
+                                    <c:choose>
+                                        <c:when test="${param.mode == 'triple'}">
+                                            <li><a href="fast_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="title" />"><lucene:hit label="title" /></a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li><a href="fast_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="title" />"><lucene:hit label="title" /></a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                               </lucene:searchIterator>
+                            </ol>
+                        </lucene:search>
+                    </c:when>
+                    <c:when test="${param.entity == 'concept'}">
+                        <lucene:search lucenePath="${index}/concept"
+                            label="content" queryParserName="boolean"
+                            queryString="${param.query}">
+                            <p>
+                                Result Count:
+                                <lucene:count />
+                            </p>
+                            <ol class="bulletedList">
+                                <lucene:searchIterator>
+                                    <c:choose>
+                                        <c:when test="${param.mode == 'triple'}">
+                                            <li><a href="fast_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="title" />"><lucene:hit label="title" /></a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li><a href="fast_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="title" />"><lucene:hit label="title" /></a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                               </lucene:searchIterator>
+                            </ol>
+                        </lucene:search>
+                    </c:when>
+                    <c:when test="${param.entity == 'event'}">
+                        <lucene:search lucenePath="${index}/event"
                             label="content" queryParserName="boolean"
                             queryString="${param.query}">
                             <p>

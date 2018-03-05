@@ -10,9 +10,6 @@
 	<c:when test="${param.entity == 'Organization'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/organization" />
 	</c:when>
-	<c:when test="${param.entity == 'GeoCoordinates'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/geo" />
-	</c:when>
     <c:when test="${param.entity == 'Intangible'}">
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/intangible" />
     </c:when>
@@ -21,6 +18,12 @@
     </c:when>
     <c:when test="${param.entity == 'Work'}">
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/work" />
+    </c:when>
+    <c:when test="${param.entity == 'Concept'}">
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/concept" />
+    </c:when>
+    <c:when test="${param.entity == 'Event'}">
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/event" />
     </c:when>
 	<c:otherwise>
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/person" />
