@@ -23,6 +23,10 @@
 <ul>
 <li><a href="<util:applicationRoot/>/fast.jsp">By Entity</a>
 </ul>
+<h3>GeoNames</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/geonames.jsp">By Feature Class</a>
+</ul>
 <h3>Getty</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/getty.jsp">By Entity</a>

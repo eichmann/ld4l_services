@@ -40,7 +40,9 @@ WebContent/fast_batch.jsp -text
 WebContent/fast_browse.jsp -text
 WebContent/fast_lookup.jsp -text
 WebContent/footer.jsp -text
+WebContent/geonames.jsp -text
 WebContent/geonames_batch.jsp -text
+WebContent/geonames_browse.jsp -text
 WebContent/geonames_lookup.jsp -text
 WebContent/getty.jsp -text
 WebContent/getty_batch.jsp -text
