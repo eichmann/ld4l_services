@@ -25,11 +25,29 @@
                     <input type="radio" name="mode" value="literal" <c:if test="${param.mode != 'triple'}">checked</c:if>>Display as HTML table
                </fieldset>
                 <fieldset><legend>Feature Class?</legend>
-                <input type="radio" id="1" name="entity" value="A" <c:if test="${param.entity == 'A'}">checked</c:if>>  A - country, state, region, ...
-                <input type="radio" id="2" name="entity" value="H" <c:if test="${param.entity == 'H'}">checked</c:if>>  H - stream, lake, ...
-                <input type="radio" id="3" name="entity" value="L" <c:if test="${param.entity == 'L'}">checked</c:if>>  L - park, area, ...
-                <input type="radio" id="4" name="entity" value="AP" <c:if test="${param.entity == 'AP'}">checked</c:if>>  AP - both A and P data
-                <input type="radio" id="5" name="entity" value="all" <c:if test="${param.entity == 'all' or empty param.mode}">checked</c:if>>  All GeoNames data
+                <table>
+                	<tr>
+ 		                <td><input type="radio" id="1" name="entity" value="A" <c:if test="${param.entity == 'A'}">checked</c:if>>  A - country, state, region, ...</td>
+		                <td><input type="radio" id="2" name="entity" value="H" <c:if test="${param.entity == 'H'}">checked</c:if>>  H - stream, lake, ...</td>
+		                <td><input type="radio" id="3" name="entity" value="L" <c:if test="${param.entity == 'L'}">checked</c:if>>  L - park, area, ...</td>
+		                <td><input type="radio" id="4" name="entity" value="P" <c:if test="${param.entity == 'P'}">checked</c:if>>  P - city, village, ...</td>
+		                <td><input type="radio" id="5" name="entity" value="R" <c:if test="${param.entity == 'R'}">checked</c:if>>  R - road, railroad</td>
+                	</tr>
+                	<tr>
+		                <td><input type="radio" id="6" name="entity" value="S" <c:if test="${param.entity == 'S'}">checked</c:if>>  S - spot, building, farm</td>
+		                <td><input type="radio" id="7" name="entity" value="T" <c:if test="${param.entity == 'T'}">checked</c:if>>  T - mountain, hill, rock, ...</td>
+		                <td><input type="radio" id="8" name="entity" value="U" <c:if test="${param.entity == 'U'}">checked</c:if>>  U - undersea</td>
+		                <td><input type="radio" id="9" name="entity" value="V" <c:if test="${param.entity == 'V'}">checked</c:if>>  V - forest, heath, ...</td>
+		                <td><input type="radio" id="10" name="entity" value="AP" <c:if test="${param.entity == 'AP' or empty param.mode}">checked</c:if>>  AP - both A and P data</td>
+                	</tr>
+                	<tr>
+		                <td><input type="radio" id="11" name="entity" value="all" <c:if test="${param.entity == 'all'}">checked</c:if>>  All GeoNames data</td>
+                	</tr>
+                </table>
+               </fieldset>
+               <fieldset><legend>Indexing?</legend>
+                    <input type="radio" name="index" value="strict" <c:if test="${param.index == 'strict'}">checked</c:if>>Strict (only terms directly associated with the entity)&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="index" value="extended" <c:if test="${param.index != 'strict'}">checked</c:if>>Extended (include terms associated with the entity's parent(s))
                </fieldset>
             </form>
             Boolean operators include &amp; (and), | (or) and ! (not).
@@ -42,120 +60,67 @@
                 </h3>
                 <c:set var="index" value="/usr/local/RAID/LD4L/lucene/geonames"/>
                 <c:choose>
+                    <c:when test="${param.index == 'strict'}">
+		                <c:set var="index" value="/usr/local/RAID/LD4L/lucene/geonames_strict"/>
+                    </c:when>
+                    <c:when test="${param.index == 'extended'}">
+		                <c:set var="index" value="/usr/local/RAID/LD4L/lucene/geonames"/>
+                    </c:when>
+                </c:choose>
+                <c:choose>
                     <c:when test="${param.entity == 'A'}">
-                        <lucene:search lucenePath="${index}/A"
-                            label="content" queryParserName="boolean"
-                            queryString="${param.query}">
-                            <p>
-                                Result Count:
-                                <lucene:count />
-                            </p>
-                            <ol class="bulletedList">
-                                <lucene:searchIterator>
-                                   <c:choose>
-                                        <c:when test="${param.mode == 'triple'}">
-                                            <li><a href="geonames_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li><a href="geonames_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </lucene:searchIterator>
-                            </ol>
-                        </lucene:search>
+                     	<c:set var="lucenePath" value="${index}/A"/>
                     </c:when>
                     <c:when test="${param.entity == 'H'}">
-                        <lucene:search lucenePath="${index}/H"
-                            label="content" queryParserName="boolean"
-                            queryString="${param.query}">
-                            <p>
-                                Result Count:
-                                <lucene:count />
-                            </p>
-                            <ol class="bulletedList">
-                                <lucene:searchIterator>
-                                   <c:choose>
-                                        <c:when test="${param.mode == 'triple'}">
-                                            <li><a href="geonames_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li><a href="geonames_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </lucene:searchIterator>
-                            </ol>
-                        </lucene:search>
+                     	<c:set var="lucenePath" value="${index}/H"/>
                     </c:when>
                     <c:when test="${param.entity == 'L'}">
-                        <lucene:search lucenePath="${index}/L"
-                            label="content" queryParserName="boolean"
-                            queryString="${param.query}">
-                            <p>
-                                Result Count:
-                                <lucene:count />
-                            </p>
-                            <ol class="bulletedList">
-                                <lucene:searchIterator>
-                                   <c:choose>
-                                        <c:when test="${param.mode == 'triple'}">
-                                            <li><a href="geonames_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li><a href="geonames_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </lucene:searchIterator>
-                            </ol>
-                        </lucene:search>
+                     	<c:set var="lucenePath" value="${index}/L"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'P'}">
+                     	<c:set var="lucenePath" value="${index}/P"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'R'}">
+                     	<c:set var="lucenePath" value="${index}/R"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'S'}">
+                     	<c:set var="lucenePath" value="${index}/S"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'T'}">
+                     	<c:set var="lucenePath" value="${index}/T"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'U'}">
+                     	<c:set var="lucenePath" value="${index}/U"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'V'}">
+                     	<c:set var="lucenePath" value="${index}/V"/>
                     </c:when>
                     <c:when test="${param.entity == 'AP'}">
-                        <lucene:search lucenePath="${index}/AP"
-                            label="content" queryParserName="boolean"
-                            queryString="${param.query}">
-                            <p>
-                                Result Count:
-                                <lucene:count />
-                            </p>
-                            <ol class="bulletedList">
-                                <lucene:searchIterator>
-                                   <c:choose>
-                                        <c:when test="${param.mode == 'triple'}">
-                                            <li><a href="geonames_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li><a href="geonames_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </lucene:searchIterator>
-                            </ol>
-                        </lucene:search>
+                     	<c:set var="lucenePath" value="${index}/AP"/>
                     </c:when>
                      <c:when test="${param.entity == 'all'}">
-                        <lucene:search lucenePath="${index}/feature"
-                            label="content" queryParserName="boolean"
-                            queryString="${param.query}">
-                            <p>
-                                Result Count:
-                                <lucene:count />
-                            </p>
-                            <ol class="bulletedList">
-                                <lucene:searchIterator>
-                                   <c:choose>
-                                        <c:when test="${param.mode == 'triple'}">
-                                            <li><a href="geonames_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li><a href="geonames_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </lucene:searchIterator>
-                            </ol>
-                        </lucene:search>
+                     	<c:set var="lucenePath" value="${index}/feature"/>
                     </c:when>
                     <c:otherwise>
                     </c:otherwise>
                 </c:choose>
             </c:if>
+
+			<lucene:search lucenePath="${lucenePath}" label="content" queryParserName="boolean" queryString="${param.query}">
+            	<p>Result Count: <lucene:count /></p>
+          		<ol class="bulletedList">
+               	<lucene:searchIterator>
+                	<c:choose>
+                   		<c:when test="${param.mode == 'triple'}">
+                       		<li><a href="geonames_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
+                     	</c:when>
+                     	<c:otherwise>
+                  			<li><a href="geonames_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
+                       	</c:otherwise>
+                	</c:choose>
+               	</lucene:searchIterator>
+                </ol>
+         	</lucene:search>
 
 <jsp:include page="/footer.jsp" flush="true" />
 </div>
