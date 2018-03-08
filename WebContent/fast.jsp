@@ -32,6 +32,7 @@
                 <input type="radio" id="5" name="entity" value="place" <c:if test="${param.entity == 'place'}">checked</c:if>>  Place
                 <input type="radio" id="6" name="entity" value="concept" <c:if test="${param.entity == 'concept'}">checked</c:if>>  Concept
                 <input type="radio" id="7" name="entity" value="event" <c:if test="${param.entity == 'event'}">checked</c:if>>  Event
+                <input type="radio" id="8" name="entity" value="genre" <c:if test="${param.entity == 'genre'}">checked</c:if>>  Form Genre
                </fieldset>
             </form>
             Boolean operators include &amp; (and), | (or) and ! (not).
@@ -156,6 +157,28 @@
                     </c:when>
                     <c:when test="${param.entity == 'concept'}">
                         <lucene:search lucenePath="${index}/concept"
+                            label="content" queryParserName="boolean"
+                            queryString="${param.query}">
+                            <p>
+                                Result Count:
+                                <lucene:count />
+                            </p>
+                            <ol class="bulletedList">
+                                <lucene:searchIterator>
+                                    <c:choose>
+                                        <c:when test="${param.mode == 'triple'}">
+                                            <li><a href="fast_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="title" />"><lucene:hit label="title" /></a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li><a href="fast_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="title" />"><lucene:hit label="title" /></a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                               </lucene:searchIterator>
+                            </ol>
+                        </lucene:search>
+                    </c:when>
+                    <c:when test="${param.entity == 'genre'}">
+                        <lucene:search lucenePath="${index}/genre"
                             label="content" queryParserName="boolean"
                             queryString="${param.query}">
                             <p>

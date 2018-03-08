@@ -22,6 +22,9 @@
     <c:when test="${param.entity == 'Concept'}">
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/concept" />
     </c:when>
+    <c:when test="${param.entity == 'Genre'}">
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/genre" />
+    </c:when>
     <c:when test="${param.entity == 'Event'}">
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/event" />
     </c:when>
