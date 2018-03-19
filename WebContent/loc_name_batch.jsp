@@ -18,7 +18,7 @@
 	</c:otherwise>
 </c:choose>
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}">
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
 	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
