@@ -16,7 +16,7 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-<h2>DBpedia Entity ${param.entity}: ${param.name}</h2>
+<h2>DBpedia Entity ${param.uri}: ${param.name}</h2>
 
 <sparql:setEndpoint var="ld4l" sparqlURL="http://services.ld4l.org/fuseki/dbpedia/sparql">
     <sparql:prefix prefix="foaf" baseURI="http://xmlns.com/foaf/0.1/"/>
@@ -26,21 +26,18 @@
     <sparql:prefix prefix="vivo" baseURI="http://vivoweb.org/ontology/core#"/>
 </sparql:setEndpoint>
 
-<sparql:query var="person" endpoint="${ld4l}" resultType="${mode}">
-    SELECT ?s ?p ?o WHERE {
-        ?s ?p ?o .
-        ?s rdf:type ?entity.
-        ?s <http://xmlns.com/foaf/0.1/name> ?name@en .
+<sparql:query var="entity" endpoint="${ld4l}" resultType="${mode}">
+    SELECT DISTINCT ?p ?o WHERE {
+        ?s ?p ?o
     }
-    <sparql:parameter var="entity" value="http://xmlns.com/foaf/0.1/${param.entity}" type="iri"/>
-    <sparql:parameter var="name" value="${param.name}"/>
+    <sparql:parameter var="s" value="${param.uri}" type="IRI" />
  </sparql:query>
 
         <table border=1>
-        <thead><tr><td>Subject</td><td>Predicate</td><td>Object</td></tr></thead>
+        <thead><tr><td>Predicate</td><td>Object</td></tr></thead>
         <tbody>
-        <c:forEach items="${person.rows}" var="row" varStatus="rowCounter">
-            <tr><td>${row.s}</td><td>${row.p}</td><td>${row.o}</td></tr>
+        <c:forEach items="${entity.rows}" var="row" varStatus="rowCounter">
+            <tr><td>${row.p}</td><td>${row.o}</td></tr>
         </c:forEach>
         </tbody>
         </table>

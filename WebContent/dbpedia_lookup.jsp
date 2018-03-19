@@ -10,17 +10,13 @@
 	<sparql:prefix prefix="vivo" baseURI="http://vivoweb.org/ontology/core#" />
 </sparql:setEndpoint>
 
-<sparql:query var="person" endpoint="${ld4l}" resultType="triple">
-    SELECT ?s ?p ?o WHERE {
-        ?s ?p ?o .
-        ?s rdf:type ?entity.
-        ?s <http://xmlns.com/foaf/0.1/name> ?name@en .
-      <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
+<sparql:query var="entity" endpoint="${ld4l}" resultType="triple">
+    SELECT DISTINCT ?p ?o WHERE {
+        ?s ?p ?o
     }
-    <sparql:parameter var="entity" value="http://xmlns.com/foaf/0.1/${param.entity}" type="iri" />
-	<sparql:parameter var="name" value="${param.name}" />
+    <sparql:parameter var="s" value="${param.uri}" type="IRI" />
 </sparql:query>
 
-<c:forEach items="${person.rows}" var="row" varStatus="rowCounter">
-${row.s} ${row.p} ${row.o} .
+<c:forEach items="${entity.rows}" var="row" varStatus="rowCounter">
+${param.uri} ${row.p} ${row.o} .
 </c:forEach>

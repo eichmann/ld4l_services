@@ -93,7 +93,7 @@
 					<c:when test="${param.mode == 'triple'}">
 						<lucene:search lucenePath="${LuceneIndex}"
 							label="content" queryParserName="boolean"
-							queryString="${param.query}">
+							queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
 							<p>
 								Result Count:
 								<lucene:count />
@@ -108,7 +108,7 @@
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
                         <lucene:search lucenePath="${LuceneIndex}"
                             label="content" queryParserName="boolean"
-                            queryString="${param.query}">
+                            queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
                             <p>
                                 Result Count:
                                 <lucene:count />

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+<%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,62 +18,91 @@
 <div id="centerCol">
 <h2>DBpedia Search by foaf Entity</h2>
 
-<script type="text/javascript">
-	function OnSubmitForm() {
-		if (document.queryForm.mode[0].checked == true) {
-			document.queryForm.action = "dbpedia_lookup.jsp";
-		} else if (document.queryForm.mode[1].checked == true) {
-			document.queryForm.action = "dbpedia_browse.jsp";
-		}
-		return true;
-	}
-</script>
-
-<form name="queryForm" method='GET' onsubmit="return OnSubmitForm();">
+<form method='POST' action='dbpedia.jsp'>
     <table border="0">
         <tr>
             <td>
                 <fieldset><legend>Result Format?</legend>
-                    <input type="radio" name="mode" value="triple" checked>Return a list of triples&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="mode" value="literal">Display as HTML table
+                    <input type="radio" name="mode" value="triple">Return a list of triples&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="mode" value="literal" checked>Display as HTML table
                </fieldset>
             </td>
             <td>
                 <fieldset><legend>Ontology class?</legend>
-               <input name="entity" size=50>
-                 </fieldset>
+                    <input type="radio" name="entity" value="Person" <c:if test="${param.entity == 'Person' or empty param.entity}">checked</c:if>>Person&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="entity" value="Organization" <c:if test="${param.entity == 'Organization'}">checked</c:if>>Organization&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="entity" value="Work" <c:if test="${param.entity == 'Work'}">checked</c:if>>Work&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="entity" value="Place" <c:if test="${param.entity == 'Place'}">checked</c:if>>Place
+                </fieldset>
             </td>
         </tr>
         <tr>
             <td colspan=2>
                 <fieldset><legend>Name of Entity?</legend>
-                <input name="name" size=50> <input type=submit name=submitButton value=Search>
+                <input name="query" value="${param.query}" size=50> <input type=submit name=submitButton value=Search>
                 </fieldset>
             </td>
         </tr>
     </table>
 </form>
-
-<h2>Search Logic</h2>
-The SPARQL query wrapped by this interface currently makes a number of assumptions, particularly that an instance of a foaf class is sought and that
-the instance asserts a name predicate that can be used to identify the instance's URI:
-<pre>
-    PREFIX foaf:  <c:out value="<"/>http://xmlns.com/foaf/0.1/<c:out value=">"/>
-    PREFIX rdf:   <c:out value="<"/>http://www.w3.org/1999/02/22-rdf-syntax-ns#<c:out value=">"/>
-    PREFIX rdfs:  <c:out value="<"/>http://www.w3.org/2000/01/rdf-schema#<c:out value=">"/>
-
-    SELECT ?s ?p ?o WHERE {
-        ?s ?p ?o .
-        ?s rdf:type foaf:?entity.
-        ?s &lt;http://xmlns.com/foaf/0.1/name&gt; ?name@en .
-    }
-</pre>
-
-<h2>Service Request Syntax</h2>
-To make a programmatic request to this service, use the following syntax:<br>
-<code><a href="/dbpedia_lookup.jsp?entity=Entity&name=Name"><util:applicationRoot/>/dbpedia_lookup.jsp?entity=<i>Entity</i>&name=<i>Name</i></a></code><br>
-Where name is properly escaped to handle things like contained spaces.
-
+            <p><hr><p>
+            <c:if test="${not empty param.query}">
+                <h3>
+                    Search Results:
+                    <c:out value="${param.query}" />
+                </h3>
+                <c:choose>
+                    <c:when test="${param.entity == 'Person'}">
+                        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/person"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'Organization'}">
+                        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/organization"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'Work'}">
+                        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/work"/>
+                    </c:when>
+                    <c:when test="${param.entity == 'Place'}">
+                        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/place"/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/person"/>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${param.mode == 'triple'}">
+                        <lucene:search lucenePath="${LuceneIndex}"
+                            label="content" queryParserName="boolean"
+                            queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
+                            <p>
+                                Result Count:
+                                <lucene:count />
+                            </p>
+                            <ol class="bulletedList">
+                                <lucene:searchIterator>
+                                   <li><a href="dbpedia_lookup.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
+                                </lucene:searchIterator>
+                            </ol>
+                        </lucene:search>
+                    </c:when>
+                    <c:when test="${param.mode == 'literal' or empty param.mode}">
+                        <lucene:search lucenePath="${LuceneIndex}"
+                            label="content" queryParserName="boolean"
+                            queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
+                            <p>
+                                Result Count:
+                                <lucene:count />
+                            </p>
+                            <ol class="bulletedList">
+                                <lucene:searchIterator>
+                                    <li><a href="dbpedia_browse.jsp?uri=<lucene:hit label="uri" />&name=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
+                                </lucene:searchIterator>
+                            </ol>
+                        </lucene:search>
+                    </c:when>
+                    <c:otherwise>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
 <jsp:include page="/footer.jsp" flush="true" />
 </div>
 </div>
