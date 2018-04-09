@@ -4,6 +4,9 @@
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
 
 <c:choose>
+	<c:when test="${param.entity == 'Person Organization'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/ulan" />
+	</c:when>
 	<c:when test="${param.entity == 'Person'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/ulan_person" />
 	</c:when>

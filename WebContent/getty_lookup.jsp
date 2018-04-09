@@ -12,19 +12,13 @@
     <sparql:prefix prefix="mads" baseURI="http://www.loc.gov/mads/rdf/v1#"/>
 </sparql:setEndpoint>
 
-<sparql:construct var="graph" endpoint="${ld4l}">
-    CONSTRUCT { ?s ?p ?o } WHERE {
-      ?s ?p ?o .
-      <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
-    }
-    <sparql:parameter var="s" value="${param.uri}" type="IRI" />
-</sparql:construct>
-
-<sparql:query var="result" graph="${graph}" resultType="triple">
-    SELECT ?s ?p ?o WHERE {
-      ?s ?p ?o .
-    } ORDER BY ?s ?p
-</sparql:query>
+<sparql:query var="result" endpoint="${ld4l}" resultType="triple">
+	SELECT DISTINCT ?p ?o WHERE {
+		?s ?p ?o
+        <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
+	}
+	<sparql:parameter var="s" value="${param.uri}" type="IRI" />
+ </sparql:query>
 
 <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
 <${param.uri}> ${row.p} ${row.o} .
