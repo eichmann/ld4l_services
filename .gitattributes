@@ -46,6 +46,7 @@ WebContent/geonames_batch.jsp -text
 WebContent/geonames_browse.jsp -text
 WebContent/geonames_lookup.jsp -text
 WebContent/getty.jsp -text
+WebContent/getty_aat.jsp -text
 WebContent/getty_batch.jsp -text
 WebContent/getty_browse.jsp -text
 WebContent/getty_lookup.jsp -text
