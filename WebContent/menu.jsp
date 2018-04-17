@@ -30,6 +30,7 @@
 <h3>Getty</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/getty.jsp">By Entity</a>
+<li><a href="<util:applicationRoot/>/getty_aat.jsp">AAT Faceted Search</a>
 </ul>
 <h3>NALT</h3>
 <ul>

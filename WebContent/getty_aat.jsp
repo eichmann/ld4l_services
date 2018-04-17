@@ -20,7 +20,7 @@
 			<jsp:param name="caller" value="research" />
 		</jsp:include>
 		<div id="centerCol">
-			<h2>Getty AAT Facet Search</h2>
+			<h2>Getty AAT Faceted Search</h2>
 			<div>
 				<div id="searchTerms">
 					<form method='POST' action='getty_aat.jsp'>
