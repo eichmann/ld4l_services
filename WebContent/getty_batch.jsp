@@ -24,7 +24,18 @@
 	</c:otherwise>
 </c:choose>
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}">
+<c:set var="real_query" value="${param.query}"/>
+<c:if test="${not empty param.facet}">
+	<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/aat_facets" />
+	<c:set var="real_query" value="${param.query} AAT${param.facet}" />
+</c:if>
+
+<lucene:search
+    lucenePath="${LuceneIndex}"
+    useConjunctionByDefault="true"
+    label="content"
+    queryParserName="boolean"
+    queryString="${real_query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
