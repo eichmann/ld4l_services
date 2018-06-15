@@ -2,10 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre" />
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}">
+<c:set var="rewrittenQuery" value="${fn:replace(param.query,'(', ' ')}"/>
+<c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,')', ' ')}"/>
+<c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,'-', ' ')}"/>
+
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${rewrittenQuery}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .

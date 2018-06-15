@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,11 +33,14 @@
 					Search Results:
 					<c:out value="${param.query}" />
 				</h3>
+                <c:set var="rewrittenQuery" value="${fn:replace(param.query,'(', ' ')}"/>
+                <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,')', ' ')}"/>
+                <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,'-', ' ')}"/>
 				<c:choose>
 					<c:when test="${param.mode == 'triple'}">
 						<lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/genre"
 							label="content" queryParserName="boolean"
-							queryString="${param.query}">
+							queryString="${rewrittenQuery}">
 							<p>
 								Result Count:
 								<lucene:count />
@@ -51,7 +55,7 @@
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
                         <lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/genre"
                             label="content" queryParserName="boolean"
-                            queryString="${param.query}">
+                            queryString="${rewrittenQuery}">
                             <p>
                                 Result Count:
                                 <lucene:count />
