@@ -59,6 +59,10 @@ WebContent/loc_genre_batch.jsp -text
 WebContent/loc_genre_browse.jsp -text
 WebContent/loc_genre_context.jsp -text
 WebContent/loc_genre_lookup.jsp -text
+WebContent/loc_instance.jsp -text
+WebContent/loc_instance_batch.jsp -text
+WebContent/loc_instance_browse.jsp -text
+WebContent/loc_instance_lookup.jsp -text
 WebContent/loc_name.jsp -text
 WebContent/loc_name_batch.jsp -text
 WebContent/loc_name_browse.jsp -text
@@ -67,6 +71,10 @@ WebContent/loc_subject.jsp -text
 WebContent/loc_subject_batch.jsp -text
 WebContent/loc_subject_browse.jsp -text
 WebContent/loc_subject_lookup.jsp -text
+WebContent/loc_work.jsp -text
+WebContent/loc_work_batch.jsp -text
+WebContent/loc_work_browse.jsp -text
+WebContent/loc_work_lookup.jsp -text
 WebContent/local_index.jsp -text
 WebContent/local_menu_end.jsp -text
 WebContent/local_menu_home.jsp -text
