@@ -54,6 +54,10 @@ WebContent/header.jsp -text
 WebContent/images/bullet-l1.gif -text
 WebContent/images/leo.png -text
 WebContent/index.jsp -text
+WebContent/loc_demographics.jsp -text
+WebContent/loc_demographics_batch.jsp -text
+WebContent/loc_demographics_browse.jsp -text
+WebContent/loc_demographics_lookup.jsp -text
 WebContent/loc_genre.jsp -text
 WebContent/loc_genre_batch.jsp -text
 WebContent/loc_genre_browse.jsp -text
@@ -67,6 +71,10 @@ WebContent/loc_name.jsp -text
 WebContent/loc_name_batch.jsp -text
 WebContent/loc_name_browse.jsp -text
 WebContent/loc_name_lookup.jsp -text
+WebContent/loc_performance.jsp -text
+WebContent/loc_performance_batch.jsp -text
+WebContent/loc_performance_browse.jsp -text
+WebContent/loc_performance_lookup.jsp -text
 WebContent/loc_subject.jsp -text
 WebContent/loc_subject_batch.jsp -text
 WebContent/loc_subject_browse.jsp -text

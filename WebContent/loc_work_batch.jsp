@@ -10,7 +10,7 @@
 <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,')', ' ')}"/>
 <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,'-', ' ')}"/>
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${rewrittenQuery}">
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" useConjunctionByDefault="true" queryString="${rewrittenQuery}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .

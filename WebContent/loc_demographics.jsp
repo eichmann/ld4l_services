@@ -17,9 +17,9 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-<h2>LoC Search for Work</h2>
+<h2>LoC Search by Demographics</h2>
 
-			<form method='POST' action='loc_work.jsp'>
+			<form method='POST' action='loc_demographics.jsp'>
 				<input name="query" value="${param.query}" size=50> <input
 					type=submit name=submitButton value=Search><br>
                 <fieldset><legend>Result Format?</legend>
@@ -38,7 +38,7 @@
                 <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,'-', ' ')}"/>
 				<c:choose>
 					<c:when test="${param.mode == 'triple'}">
-						<lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/work"
+						<lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/demographics"
 							label="content" queryParserName="boolean" useConjunctionByDefault="true" 
 							queryString="${rewrittenQuery}">
 							<p>
@@ -47,13 +47,13 @@
 							</p>
 							<ol class="bulletedList">
 								<lucene:searchIterator>
-                                   <li><a href="loc_work_lookup.jsp?uri=<lucene:hit label="uri" />&subject=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
+                                   <li><a href="loc_demographics_lookup.jsp?uri=<lucene:hit label="uri" />&subject=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
  								</lucene:searchIterator>
 							</ol>
 						</lucene:search>
 					</c:when>
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
-                        <lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/work"
+                        <lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/demographics"
                             label="content" queryParserName="boolean" useConjunctionByDefault="true" 
                             queryString="${rewrittenQuery}">
                             <p>
@@ -62,7 +62,7 @@
                             </p>
                             <ol class="bulletedList">
                                 <lucene:searchIterator>
-                                    <li><a href="loc_work_browse.jsp?uri=<lucene:hit label="uri" />&subject=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
+                                    <li><a href="loc_demographics_browse.jsp?uri=<lucene:hit label="uri" />&subject=<lucene:hit label="name" />"><lucene:hit label="name" /></a></li>
                                 </lucene:searchIterator>
                             </ol>
                         </lucene:search>
