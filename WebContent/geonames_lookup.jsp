@@ -33,6 +33,7 @@
       	?s  gn:parentADM2 ?x .
 		?x gn:name ?y
 	  }
+	}
     <sparql:parameter var="s" value="${param.uri}" type="IRI" />
 </sparql:construct>
 
