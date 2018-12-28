@@ -18,6 +18,11 @@
 <li><a href="<util:applicationRoot/>/loc_work.jsp">Work</a>
 <li><a href="<util:applicationRoot/>/loc_instance.jsp">Instance</a>
 </ul>
+<h3>SHARE VDE</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/stanford_share_vde_work.jsp">Stanford Work</a>
+<li><a href="<util:applicationRoot/>/stanford_share_vde_instance.jsp">Stanford Instance</a>
+</ul>
 <h3>VIAF</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/viaf_entity.jsp">By Entity</a>
