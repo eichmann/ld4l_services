@@ -104,6 +104,14 @@ WebContent/stanford_share_vde_work.jsp -text
 WebContent/stanford_share_vde_work_batch.jsp -text
 WebContent/stanford_share_vde_work_browse.jsp -text
 WebContent/stanford_share_vde_work_lookup.jsp -text
+WebContent/ucsd_share_vde_instance.jsp -text
+WebContent/ucsd_share_vde_instance_batch.jsp -text
+WebContent/ucsd_share_vde_instance_browse.jsp -text
+WebContent/ucsd_share_vde_instance_lookup.jsp -text
+WebContent/ucsd_share_vde_work.jsp -text
+WebContent/ucsd_share_vde_work_batch.jsp -text
+WebContent/ucsd_share_vde_work_browse.jsp -text
+WebContent/ucsd_share_vde_work_lookup.jsp -text
 WebContent/viaf_entity.jsp -text
 WebContent/viaf_entity_browse.jsp -text
 WebContent/viaf_entity_lookup.jsp -text

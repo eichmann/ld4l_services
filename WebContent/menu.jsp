@@ -22,6 +22,8 @@
 <ul>
 <li><a href="<util:applicationRoot/>/stanford_share_vde_work.jsp">Stanford Work</a>
 <li><a href="<util:applicationRoot/>/stanford_share_vde_instance.jsp">Stanford Instance</a>
+<li><a href="<util:applicationRoot/>/ucsd_share_vde_work.jsp">UCSD Work</a>
+<li><a href="<util:applicationRoot/>/ucsd_share_vde_instance.jsp">UCSD Instance</a>
 </ul>
 <h3>VIAF</h3>
 <ul>
