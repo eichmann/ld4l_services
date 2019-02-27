@@ -22,6 +22,14 @@ WebContent/catalog_person_lookup.jsp -text
 WebContent/catalog_work.jsp -text
 WebContent/catalog_work_browse.jsp -text
 WebContent/catalog_work_lookup.jsp -text
+WebContent/cornell_share_vde_instance.jsp -text
+WebContent/cornell_share_vde_instance_batch.jsp -text
+WebContent/cornell_share_vde_instance_browse.jsp -text
+WebContent/cornell_share_vde_instance_lookup.jsp -text
+WebContent/cornell_share_vde_work.jsp -text
+WebContent/cornell_share_vde_work_batch.jsp -text
+WebContent/cornell_share_vde_work_browse.jsp -text
+WebContent/cornell_share_vde_work_lookup.jsp -text
 WebContent/dbpedia.jsp -text
 WebContent/dbpedia_batch.jsp -text
 WebContent/dbpedia_browse.jsp -text
