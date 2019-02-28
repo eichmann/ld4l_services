@@ -20,6 +20,8 @@
 </ul>
 <h3>SHARE VDE</h3>
 <ul>
+<li><a href="<util:applicationRoot/>/cornell_share_vde_work.jsp">Cornell Work</a>
+<li><a href="<util:applicationRoot/>/cornell_share_vde_instance.jsp">Cornell Instance</a>
 <li><a href="<util:applicationRoot/>/stanford_share_vde_work.jsp">Stanford Work</a>
 <li><a href="<util:applicationRoot/>/stanford_share_vde_instance.jsp">Stanford Instance</a>
 <li><a href="<util:applicationRoot/>/ucsd_share_vde_work.jsp">UCSD Work</a>
