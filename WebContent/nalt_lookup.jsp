@@ -32,5 +32,5 @@
 </sparql:query>
 
 <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-<${param.uri}> ${row.p} ${row.o} .
+${row.s} ${row.p} ${row.o} .
 </c:forEach>
