@@ -17,6 +17,7 @@
         <c:if test="${empty param.context}">
             <jsp:include page="ucsd_share_vde_instance_lookup.jsp">
                 <jsp:param value="${uri}" name="uri"/>
+                <jsp:param value="triple" name="mode"/>
             </jsp:include>
         </c:if>
         <c:if test="${not empty param.context}">

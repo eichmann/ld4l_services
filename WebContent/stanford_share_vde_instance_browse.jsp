@@ -37,7 +37,7 @@
 	<sparql:parameter var="s" value="${param.uri}" type="IRI" />
  </sparql:construct>
 
-<sparql:query var="result" graph="${graph}" resultType="${mode}">
+<sparql:query var="result" graph="${graph}" resultType="literal">
     SELECT ?s ?p ?o WHERE {
       ?s ?p ?o .
     } ORDER BY ?s ?p

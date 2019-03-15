@@ -12,6 +12,11 @@
     <sparql:prefix prefix="mads" baseURI="http://www.loc.gov/mads/rdf/v1#"/>
 </sparql:setEndpoint>
 
+<c:set var="mode" value="${param.mode}"/>
+<c:if test="${empty mode}">
+	<c:set var="mode" value="triple"/>
+</c:if>
+
 <sparql:construct var="graph" endpoint="${vde}">
 	CONSTRUCT { ?s ?p ?o . ?o ?p2 ?o2 . } WHERE { graph ?g {
 		?s ?p ?o .
