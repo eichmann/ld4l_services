@@ -13,8 +13,12 @@
 </sparql:setEndpoint>
 
 <sparql:construct var="graph" endpoint="${ld4l}">
-    CONSTRUCT { ?s ?p ?o . ?o ?q ?r } WHERE {
+    CONSTRUCT { ?s ?p ?o . ?o ?q ?r . ?rws ?rwp ?rwo } WHERE {
       ?s ?p ?o .
+      OPTIONAL {
+      	?s mads:identifiesRWO ?rws.
+      	?rws ?rwp ?rwo.
+      }
       OPTIONAL {
         ?o ?q ?r
         FILTER (isBlank(?o))
