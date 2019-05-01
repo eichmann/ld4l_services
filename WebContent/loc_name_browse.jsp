@@ -28,13 +28,23 @@
 </sparql:setEndpoint>
 
 <sparql:construct var="graph" endpoint="${ld4l}">
-	CONSTRUCT { ?s ?p ?o . ?o ?q ?r } WHERE {
-	  ?s ?p ?o .
-	  OPTIONAL {
-	    ?o ?q ?r
-	    FILTER (isBlank(?o))
-	  }
-	}
+    CONSTRUCT { ?s ?p ?o . ?o <http://www.loc.gov/mads/rdf/v1#variantLabel> ?r . ?rws ?rwp ?rwo . ?rwo $rp ?rs } WHERE {
+      ?s ?p ?o .
+      OPTIONAL {
+        ?o <http://www.loc.gov/mads/rdf/v1#variantLabel> ?r
+        FILTER (isBlank(?o))
+      }
+      OPTIONAL {
+      	?s mads:identifiesRWO ?rws.
+      	?rws ?rwp ?rwo.
+      }
+      OPTIONAL {
+        ?rwo ?rp ?rs
+        FILTER (isBlank(?o))
+        <c:if test="${not empty param.lang}">FILTER(!isLiteral(?r) || lang(?r) = "" || langMatches(lang(?r), "${param.lang}"))</c:if>
+      }
+      <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
+    }
 	<sparql:parameter var="s" value="${param.uri}" type="IRI" />
 </sparql:construct>
 
