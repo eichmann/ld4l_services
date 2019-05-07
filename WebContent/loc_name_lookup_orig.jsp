@@ -13,21 +13,16 @@
 </sparql:setEndpoint>
 
 <sparql:construct var="graph" endpoint="${ld4l}">
-    CONSTRUCT { ?s ?p ?o . ?o <http://www.loc.gov/mads/rdf/v1#variantLabel> ?r . ?rws ?rwp ?rwo . ?rwo $rp ?rs } WHERE {
+    CONSTRUCT { ?s ?p ?o . ?o ?q ?r . ?rws ?rwp ?rwo } WHERE {
       ?s ?p ?o .
-      ?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.loc.gov/mads/rdf/v1#PersonalName> .
       OPTIONAL {
-        ?o <http://www.loc.gov/mads/rdf/v1#variantLabel> ?r
+        ?s mads:identifiesRWO ?rws.
+        ?rws ?rwp ?rwo.
+      }
+      OPTIONAL {
+        ?o ?q ?r
         FILTER (isBlank(?o))
-      }
-      OPTIONAL {
-      	?s mads:identifiesRWO ?rws.
-      	?rws ?rwp ?rwo.
-      }
-      OPTIONAL {
-        ?rwo ?rp ?rs
-        FILTER (isBlank(?rwo))
-        <c:if test="${not empty param.lang}">FILTER(!isLiteral(?rs) || lang(?rs) = "" || langMatches(lang(?rs), "${param.lang}"))</c:if>
+        <c:if test="${not empty param.lang}">FILTER(!isLiteral(?r) || lang(?r) = "" || langMatches(lang(?r), "${param.lang}"))</c:if>
       }
       <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
     }
