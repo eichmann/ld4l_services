@@ -42,7 +42,6 @@
 	      }
 	      OPTIONAL {
 	        ?rwo ?rp ?rs
-	        FILTER (isBlank(?rwo))
 	        <c:if test="${not empty param.lang}">FILTER(!isLiteral(?rs) || lang(?rs) = "" || langMatches(lang(?rs), "${param.lang}"))</c:if>
 	      }
 	      <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
