@@ -79,8 +79,6 @@ WebContent/loc_name.jsp -text
 WebContent/loc_name_batch.jsp -text
 WebContent/loc_name_browse.jsp -text
 WebContent/loc_name_lookup.jsp -text
-WebContent/loc_name_lookup_context.jsp -text
-WebContent/loc_name_lookup_orig.jsp -text
 WebContent/loc_performance.jsp -text
 WebContent/loc_performance_batch.jsp -text
 WebContent/loc_performance_browse.jsp -text
