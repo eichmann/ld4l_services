@@ -61,6 +61,23 @@
           }
           <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
         }
+    UNION
+        {
+          ?s ?p ?o .
+          FILTER NOT EXISTS { ?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.loc.gov/mads/rdf/v1#PersonalName> }
+          FILTER NOT EXISTS { ?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.loc.gov/mads/rdf/v1#CorporateName> }
+          FILTER NOT EXISTS { ?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.loc.gov/mads/rdf/v1#Title> }
+          OPTIONAL {
+            ?s mads:identifiesRWO ?rws.
+            ?rws ?rwp ?rwo.
+          }
+          OPTIONAL {
+            ?o ?q ?r2
+            FILTER (isBlank(?o2))
+            <c:if test="${not empty param.lang}">FILTER(!isLiteral(?r2) || lang(?r2) = "" || langMatches(lang(?r2), "${param.lang}"))</c:if>
+          }
+          <c:if test="${not empty param.lang}">FILTER(!isLiteral(?o) || lang(?o) = "" || langMatches(lang(?o), "${param.lang}"))</c:if>
+        }
     }
     <sparql:parameter var="s" value="${param.uri}" type="IRI" />
 </sparql:construct>
