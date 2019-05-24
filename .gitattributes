@@ -83,6 +83,8 @@ WebContent/loc_performance.jsp -text
 WebContent/loc_performance_batch.jsp -text
 WebContent/loc_performance_browse.jsp -text
 WebContent/loc_performance_lookup.jsp -text
+WebContent/loc_rwo_name.jsp -text
+WebContent/loc_rwo_name_browse.jsp -text
 WebContent/loc_subject.jsp -text
 WebContent/loc_subject_batch.jsp -text
 WebContent/loc_subject_browse.jsp -text
