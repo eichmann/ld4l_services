@@ -12,6 +12,7 @@
 <ul>
 <li><a href="<util:applicationRoot/>/loc_genre.jsp">By Genre</a>
 <li><a href="<util:applicationRoot/>/loc_name.jsp">By Name</a>
+<li><a href="<util:applicationRoot/>/loc_rwo_name.jsp">By RWO Name</a>
 <li><a href="<util:applicationRoot/>/loc_subject.jsp">By Subject</a>
 <li><a href="<util:applicationRoot/>/loc_demographics.jsp">By Demographics</a>
 <li><a href="<util:applicationRoot/>/loc_performance.jsp">By Performance</a>

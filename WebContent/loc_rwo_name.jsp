@@ -16,7 +16,7 @@
     <jsp:param name="caller" value="research" />
 </jsp:include>
 <div id="centerCol">
-<h2>LoC Search by Name</h2>
+<h2>LoC Search by Name of Real World Object (RWO)</h2>
 <!-- http://guardian.slis.uiowa.edu:8080/ld4l_services/loc_name_search.jsp?q=twain&maximumRecords=3&language=en -->
 <!-- http://guardian.slis.uiowa.edu:8080/ld4l_services/loc_name_search.jsp?q=twain&maximumRecords=3&language=en&type=personalName -->
 <!--  
