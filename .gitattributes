@@ -85,6 +85,7 @@ WebContent/loc_performance_browse.jsp -text
 WebContent/loc_performance_lookup.jsp -text
 WebContent/loc_rwo_name.jsp -text
 WebContent/loc_rwo_name_batch.jsp -text
+WebContent/loc_rwo_name_batch2.jsp -text
 WebContent/loc_rwo_name_browse.jsp -text
 WebContent/loc_rwo_name_lookup.jsp -text
 WebContent/loc_subject.jsp -text
