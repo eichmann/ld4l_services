@@ -20,6 +20,7 @@
 </c:choose>
 
 <c:set var="offset" value="0"/>
+<c:set var="exact_match" value=""/>
 <sparql:setEndpoint var="ld4l" sparqlURL="http://services.ld4l.org/fuseki/loc_names/sparql">
     <sparql:prefix prefix="foaf" baseURI="http://xmlns.com/foaf/0.1/"/>
     <sparql:prefix prefix="bibo" baseURI="http://purl.org/ontology/bibo/"/>
@@ -37,8 +38,9 @@
  </sparql:query>
 
 <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-	<c:set var="offset" value="1"/>
-<${row.s}> <http://vivoweb.org/ontology/core#ranks> "${offset}" .
+	<c:set var="offset" value="${offset + 1}"/>
+	<c:set var="exact_match" value="${row.s}"/>
+<${row.s}>   <http://vivoweb.org/ontology/core#rank>   "${offset}" .
 	<jsp:include page="loc_rwo_name_lookup.jsp">
 		<jsp:param value="${row.s}" name="uri"/>
 	</jsp:include>
@@ -47,10 +49,12 @@
 
 <lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
 	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}" rankOffset="${offset}">
-       <c:set var="uri"><lucene:hit label="uri" /></c:set>
-<${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
-	   <jsp:include page="loc_rwo_name_lookup.jsp">
-	       <jsp:param value="${uri}" name="uri"/>
-	   </jsp:include>
+		<c:set var="uri"><lucene:hit label="uri" /></c:set>
+		<c:if test="${uri != exact_match}">
+<${uri}> <http: //vivoweb.org/ontology/core#rank> "<lucene:hitRank />" .
+	   		<jsp:include page="loc_rwo_name_lookup.jsp">
+				<jsp:param value="${uri}" name="uri" />
+			</jsp:include>
+		</c:if>
 	</lucene:searchIterator>
 </lucene:search>
