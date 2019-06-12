@@ -48,7 +48,7 @@
 
 
 <lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
-	<lucene:searchIterator limitCriteria="${param.maxRecords}" startCriteria="${param.startRecord}" rankOffset="${offset}">
+	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
 		<c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank />" .
