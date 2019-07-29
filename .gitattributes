@@ -108,6 +108,13 @@ WebContent/nalt_batch.jsp -text
 WebContent/nalt_browse.jsp -text
 WebContent/nalt_lookup.jsp -text
 WebContent/resources/style.css -text
+WebContent/share_vde/batch.jsp -text
+WebContent/share_vde/browse.jsp -text
+WebContent/share_vde/frick.jsp -text
+WebContent/share_vde/frick_batch.jsp -text
+WebContent/share_vde/lookup.jsp -text
+WebContent/share_vde/query.jsp -text
+WebContent/share_vde/search.jsp -text
 WebContent/stanford_share_vde_instance.jsp -text
 WebContent/stanford_share_vde_instance_batch.jsp -text
 WebContent/stanford_share_vde_instance_browse.jsp -text
