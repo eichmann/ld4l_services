@@ -24,10 +24,16 @@
                 <fieldset><legend>Site?</legend>
                     <select name="site">
                         <option value="alberta" <c:if test="${param.entity == 'alberta'}">selected</c:if>>Alberta</option>
-                        <option value="duke" <c:if test="${param.entity == 'duke'}">selected</c:if>>Duke</option>
-                        <option value="frick" <c:if test="${param.entity == 'frick'}">selected</c:if>>Frick</Instance>
                         <option value="colorado" <c:if test="${param.entity == 'colorado'}">selected</c:if>>Colorado</option>
                         <option value="cornell" <c:if test="${param.entity == 'cornell' or empty param.entity}">selected</c:if>>Cornell</option>
+                        <option value="duke" <c:if test="${param.entity == 'duke'}">selected</c:if>>Duke</option>
+                        <option value="frick" <c:if test="${param.entity == 'frick'}">selected</c:if>>Frick</Instance>
+                        <option value="nlm" <c:if test="${param.entity == 'nlm'}">selected</c:if>>NLM</option>
+                        <option value="northwestern" <c:if test="${param.entity == 'northwestern'}">selected</c:if>>Northwestern</option>
+                        <option value="ransom" <c:if test="${param.entity == 'ransom'}">selected</c:if>>Ransom</option>
+                        <option value="ucdavis" <c:if test="${param.entity == 'ucdavis'}">selected</c:if>>UC Davis</option>
+                        <option value="ucsd" <c:if test="${param.entity == 'ucsd'}">selected</c:if>>UCSD</option>
+                        <option value="uwashington" <c:if test="${param.entity == 'uwashington'}">selected</c:if>>UWashington</option>
                     </select>
                 </fieldset>
                 <fieldset><legend>Ontology class?</legend>

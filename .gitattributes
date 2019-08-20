@@ -117,8 +117,14 @@ WebContent/share_vde/duke_batch.jsp -text
 WebContent/share_vde/frick.jsp -text
 WebContent/share_vde/frick_batch.jsp -text
 WebContent/share_vde/lookup.jsp -text
+WebContent/share_vde/nlm_batch.jsp -text
+WebContent/share_vde/northwestern_batch.jsp -text
 WebContent/share_vde/query.jsp -text
+WebContent/share_vde/ransom_batch.jsp -text
 WebContent/share_vde/search.jsp -text
+WebContent/share_vde/ucdavis_batch.jsp -text
+WebContent/share_vde/ucsd_batch.jsp -text
+WebContent/share_vde/uwashingtom_batch.jsp -text
 WebContent/stanford_share_vde_instance.jsp -text
 WebContent/stanford_share_vde_instance_batch.jsp -text
 WebContent/stanford_share_vde_instance_browse.jsp -text
