@@ -44,6 +44,7 @@ WebContent/dbpedia_person_browse.jsp -text
 WebContent/dbpedia_person_doi_browse.jsp -text
 WebContent/dbpedia_person_lookup.jsp -text
 WebContent/dbpedia_person_timeline.jsp -text
+WebContent/emit_graph.jsp -text
 WebContent/fast.jsp -text
 WebContent/fast_batch.jsp -text
 WebContent/fast_browse.jsp -text
