@@ -81,13 +81,3 @@
     }
 	<sparql:parameter var="rws" value="${param.uri}" type="IRI" />
 </sparql:construct>
-
-<sparql:query var="result" graph="${graph}" resultType="triple">
-    SELECT ?s ?p ?o WHERE {
-      ?s ?p ?o .
-    } ORDER BY ?s ?p
-</sparql:query>
-
-<c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-${row.s} ${row.p} ${row.o} .
-</c:forEach>

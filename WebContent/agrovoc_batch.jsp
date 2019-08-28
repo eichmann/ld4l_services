@@ -42,3 +42,5 @@
 	   </c:if>
 	</lucene:searchIterator>
 </lucene:search>
+
+<jsp:include page="emit_graph.jsp"/>
