@@ -107,6 +107,7 @@ WebContent/share_vde/browse.jsp -text
 WebContent/share_vde/colorado_batch.jsp -text
 WebContent/share_vde/cornell_batch.jsp -text
 WebContent/share_vde/duke_batch.jsp -text
+WebContent/share_vde/emit.jsp -text
 WebContent/share_vde/frick.jsp -text
 WebContent/share_vde/frick_batch.jsp -text
 WebContent/share_vde/lookup.jsp -text

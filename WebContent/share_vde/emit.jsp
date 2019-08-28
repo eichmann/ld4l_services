@@ -3,4 +3,12 @@
 <%@ taglib prefix="sparql" uri="http://slis.uiowa.edu/SPARQL"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<%@ include file="query.jsp" %>
+<sparql:query var="result" graph="${graph}" resultType="triple">
+    SELECT ?s ?p ?o WHERE {
+      ?s ?p ?o .
+    } ORDER BY ?s ?p
+</sparql:query>
+
+<c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
+${row.s} ${row.p} ${row.o} .
+</c:forEach>
