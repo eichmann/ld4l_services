@@ -53,4 +53,4 @@
 	</lucene:searchIterator>
 </lucene:search>
 
-<jsp:include page="emit_graph.jsp"/>
+<jsp:include page="emit.jsp"/>

@@ -4,3 +4,5 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <%@ include file="query.jsp" %>
+
+<jsp:include page="emit_graph.jsp"/>

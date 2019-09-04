@@ -81,3 +81,5 @@
     }
 	<sparql:parameter var="rws" value="${param.uri}" type="IRI" />
 </sparql:construct>
+
+<jsp:include page="emit_graph.jsp"/>
