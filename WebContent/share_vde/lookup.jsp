@@ -5,4 +5,4 @@
 
 <%@ include file="query.jsp" %>
 
-<jsp:include page="emit_graph.jsp"/>
+<jsp:include page="emit.jsp"/>
