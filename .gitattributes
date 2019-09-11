@@ -103,6 +103,7 @@ WebContent/nalt_lookup.jsp -text
 WebContent/resources/style.css -text
 WebContent/share_vde/alberta_batch.jsp -text
 WebContent/share_vde/batch.jsp -text
+WebContent/share_vde/batch_lookup.jsp -text
 WebContent/share_vde/browse.jsp -text
 WebContent/share_vde/chicago_batch.jsp -text
 WebContent/share_vde/colorado_batch.jsp -text
