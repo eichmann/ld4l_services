@@ -4,5 +4,3 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <%@ include file="loc_rwo_name_query.jsp" %>
-
-<jsp:include page="emit_graph.jsp"/>
