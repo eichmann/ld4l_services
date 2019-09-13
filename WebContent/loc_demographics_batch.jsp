@@ -34,7 +34,7 @@
 	<c:set var="exact_match" value="${row.s}"/>
 <${row.s}>   <http://vivoweb.org/ontology/core#rank>   "${offset}" .
        <c:if test="${empty param.context}">
-           <jsp:include page="loc_demographics_lookup.jsp">
+           <jsp:include page="loc_demographics_query.jsp">
                <jsp:param value="${row.s}" name="uri"/>
            </jsp:include>
        </c:if>
@@ -51,7 +51,7 @@
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
 	        <c:if test="${empty param.context}">
-	            <jsp:include page="loc_demographics_lookup.jsp">
+	            <jsp:include page="loc_demographics_query.jsp">
 	                <jsp:param value="${uri}" name="uri"/>
 	            </jsp:include>
 	        </c:if>
@@ -63,3 +63,5 @@
 		</c:if>
 	</lucene:searchIterator>
 </lucene:search>
+
+<%@ include file="emit_graph.jsp" %>

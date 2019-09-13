@@ -28,7 +28,7 @@
 	<c:set var="offset" value="${offset + 1}"/>
 	<c:set var="exact_match" value="${row.s}"/>
 <${row.s}>   <http://vivoweb.org/ontology/core#rank>   "${offset}" .
-	<jsp:include page="loc_subject_lookup.jsp">
+	<jsp:include page="loc_subject_query.jsp">
 		<jsp:param value="${row.s}" name="uri"/>
 	</jsp:include>
 </c:forEach>
@@ -38,9 +38,11 @@
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
-	   <jsp:include page="loc_subject_lookup.jsp">
+	   <jsp:include page="loc_subject_query.jsp">
 	       <jsp:param value="${uri}" name="uri"/>
 	   </jsp:include>
 	   </c:if>
 	</lucene:searchIterator>
 </lucene:search>
+
+<%@ include file="emit_graph.jsp" %>
