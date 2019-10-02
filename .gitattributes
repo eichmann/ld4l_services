@@ -105,6 +105,10 @@ WebContent/nalt.jsp -text
 WebContent/nalt_batch.jsp -text
 WebContent/nalt_browse.jsp -text
 WebContent/nalt_lookup.jsp -text
+WebContent/rda.jsp -text
+WebContent/rda_batch.jsp -text
+WebContent/rda_browse.jsp -text
+WebContent/rda_lookup.jsp -text
 WebContent/resources/style.css -text
 WebContent/share_vde/alberta_batch.jsp -text
 WebContent/share_vde/batch.jsp -text

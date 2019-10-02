@@ -62,6 +62,10 @@
 <ul>
 <li><a href="<util:applicationRoot/>/mesh.jsp">By Concept</a>
 </ul>
+<h3>RDA</h3>
+<ul>
+<li><a href="<util:applicationRoot/>/rda.jsp">By Label</a>
+</ul>
 <h3>Catalog</h3>
 <ul>
 <li><a href="<util:applicationRoot/>/catalog_work.jsp">By Work</a>
