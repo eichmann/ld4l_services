@@ -8,17 +8,23 @@
     <sparql:prefix prefix="bibo" baseURI="http://purl.org/ontology/bibo/"/>
     <sparql:prefix prefix="rdf"  baseURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <sparql:prefix prefix="rdfs" baseURI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <sparql:prefix prefix="skos" baseURI="http://www.w3.org/2004/02/skos/core#"/>
+    <sparql:prefix prefix="schema" baseURI="http://schema.org/"/>
     <sparql:prefix prefix="mads" baseURI="http://www.loc.gov/mads/rdf/v1#"/>
+    <sparql:prefix prefix="skos" baseURI="http://www.w3.org/2004/02/skos/core#"/>
+    <sparql:prefix prefix="loc" baseURI="http://id.loc.gov/vocabulary/identifiers/"/>
 </sparql:setEndpoint>
 
-<sparql:query var="result" endpoint="${ld4l}" resultType="triple">
-    SELECT DISTINCT ?p ?o WHERE {
-        ?s ?p ?o
+ <sparql:construct var="graph" endpoint="${ld4l}">
+    CONSTRUCT { ?s ?p ?o . ?o skos:prefLabel ?r . ?o2 skos:prefLabel ?r2 } WHERE {
+      ?s ?p ?o .
+      OPTIONAL {
+      	?s skos:narrower ?o .
+        ?o skos:prefLabel ?r .
+      }
+      OPTIONAL {
+      	?s skos:broader ?o2 .
+        ?o2 skos:prefLabel ?r2 .
+      }
     }
     <sparql:parameter var="s" value="${param.uri}" type="IRI" />
-</sparql:query>
-
-<c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-<${param.uri}> ${row.p} ${row.o} .
-</c:forEach>
+</sparql:construct>
