@@ -5,7 +5,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sparql" uri="http://slis.uiowa.edu/SPARQL"%>
 
-<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre" />
+<c:choose>
+	<c:when test="${param.entity == 'active'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_active" />
+	</c:when>
+	<c:when test="${param.entity == 'deprecated'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_deprecated" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_active" />
+	</c:otherwise>
+</c:choose>
 
 <c:set var="rewrittenQuery" value="${fn:replace(param.query,'(', ' ')}"/>
 <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,')', ' ')}"/>
@@ -33,16 +43,9 @@
 	<c:set var="offset" value="${offset + 1}"/>
 	<c:set var="exact_match" value="${row.s}"/>
 <${row.s}>   <http://vivoweb.org/ontology/core#rank>   "${offset}" .
-        <c:if test="${empty param.context}">
-            <jsp:include page="loc_genre_lookup.jsp">
+            <jsp:include page="loc_genre_query.jsp">
                 <jsp:param value="${row.s}" name="uri"/>
             </jsp:include>
-        </c:if>
-        <c:if test="${not empty param.context}">
-            <jsp:include page="loc_genre_context.jsp">
-                <jsp:param value="${row.s}" name="uri"/>
-            </jsp:include>
-        </c:if>
 </c:forEach>
 
 <lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${rewrittenQuery}">
@@ -50,16 +53,11 @@
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
-        <c:if test="${empty param.context}">
-            <jsp:include page="loc_genre_lookup.jsp">
+             <jsp:include page="loc_genre_query.jsp">
                 <jsp:param value="${uri}" name="uri"/>
             </jsp:include>
-        </c:if>
-        <c:if test="${not empty param.context}">
-            <jsp:include page="loc_genre_context.jsp">
-                <jsp:param value="${uri}" name="uri"/>
-            </jsp:include>
-        </c:if>
         </c:if>
 	</lucene:searchIterator>
 </lucene:search>
+
+<%@ include file="emit_graph.jsp" %>

@@ -22,6 +22,10 @@
 			<form method='POST' action='loc_genre.jsp'>
 				<input name="query" value="${param.query}" size=50> <input
 					type=submit name=submitButton value=Search><br>
+                <fieldset><legend>Status?</legend>
+                    <input type="radio" name="entity" value="active" <c:if test="${param.entity != 'deprecated'}">checked</c:if>>Active&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="entity" value="deprecated" <c:if test="${param.entity == 'deprecated'}">checked</c:if>>Deprecated
+               </fieldset>
                 <fieldset><legend>Result Format?</legend>
                     <input type="radio" name="mode" value="triple" <c:if test="${param.mode == 'triple'}">checked</c:if>>Return a list of triples&nbsp;&nbsp;&nbsp;
                     <input type="radio" name="mode" value="literal" <c:if test="${param.mode != 'triple'}">checked</c:if>>Display as HTML table
@@ -31,14 +35,26 @@
 			<c:if test="${not empty param.query}">
 				<h3>
 					Search Results:
+					<c:out value="${param.entity}" />
 					<c:out value="${param.query}" />
 				</h3>
                 <c:set var="rewrittenQuery" value="${fn:replace(param.query,'(', ' ')}"/>
                 <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,')', ' ')}"/>
                 <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,'-', ' ')}"/>
 				<c:choose>
+					<c:when test="${param.entity == 'active'}">
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_active" />
+					</c:when>
+					<c:when test="${param.entity == 'deprecated'}">
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_deprecated" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_active" />
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
 					<c:when test="${param.mode == 'triple'}">
-						<lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/genre"
+						<lucene:search lucenePath="${LuceneIndex}"
 							label="content" queryParserName="boolean"
 							queryString="${rewrittenQuery}">
 							<p>
@@ -53,7 +69,7 @@
 						</lucene:search>
 					</c:when>
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
-                        <lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/genre"
+                        <lucene:search lucenePath="${LuceneIndex}"
                             label="content" queryParserName="boolean"
                             queryString="${rewrittenQuery}">
                             <p>

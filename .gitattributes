@@ -65,6 +65,7 @@ WebContent/loc_genre_batch.jsp -text
 WebContent/loc_genre_browse.jsp -text
 WebContent/loc_genre_context.jsp -text
 WebContent/loc_genre_lookup.jsp -text
+WebContent/loc_genre_query.jsp -text
 WebContent/loc_instance.jsp -text
 WebContent/loc_instance_batch.jsp -text
 WebContent/loc_instance_browse.jsp -text
