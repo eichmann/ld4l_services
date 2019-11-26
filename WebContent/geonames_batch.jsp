@@ -82,6 +82,7 @@
 </c:forEach>
 
 <lucene:search lucenePath="${lucenePath}" label="content" queryParserName="boolean" queryString="${param.query}">
+<http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">

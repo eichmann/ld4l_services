@@ -6,25 +6,37 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'Person'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/person" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/person" />
 	</c:when>
 	<c:when test="${param.entity == 'Organization'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/organization" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/organization" />
 	</c:when>
+    <c:when test="${param.entity == 'Intangible'}">
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/intangible" />
+    </c:when>
     <c:when test="${param.entity == 'Place'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/place" />
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/place" />
     </c:when>
     <c:when test="${param.entity == 'Work'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/work" />
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/work" />
+    </c:when>
+    <c:when test="${param.entity == 'Concept'}">
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/concept" />
+    </c:when>
+    <c:when test="${param.entity == 'Genre'}">
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/genre" />
+    </c:when>
+    <c:when test="${param.entity == 'Event'}">
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/event" />
     </c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/dbpedia/person" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/person" />
 	</c:otherwise>
 </c:choose>
 
 <c:set var="offset" value="0"/>
 <c:set var="exact_match" value=""/>
-<sparql:setEndpoint var="ld4l" sparqlURL="http://services.ld4l.org/fuseki/dbpedia/sparql">
+<sparql:setEndpoint var="ld4l" sparqlURL="http://services.ld4l.org/fuseki/fast/sparql">
     <sparql:prefix prefix="foaf" baseURI="http://xmlns.com/foaf/0.1/"/>
     <sparql:prefix prefix="bibo" baseURI="http://purl.org/ontology/bibo/"/>
     <sparql:prefix prefix="rdf"  baseURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
@@ -35,7 +47,7 @@
 
 <sparql:query var="result" endpoint="${ld4l}" resultType="literal">
 	SELECT ?s WHERE {
-		?s <http://www.w3.org/2000/01/rdf-schema#label> ?o@en
+		?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?o
 	}
 	<sparql:parameter var="o" value="${param.query}" type="literal" />
  </sparql:query>
@@ -44,7 +56,7 @@
 	<c:set var="offset" value="${offset + 1}"/>
 	<c:set var="exact_match" value="${row.s}"/>
 <${row.s}>   <http://vivoweb.org/ontology/core#rank>   "${offset}" .
-	<jsp:include page="dbpedia_lookup.jsp">
+	<jsp:include page="fast_lookup.jsp">
 		<jsp:param value="${row.s}" name="uri"/>
 	</jsp:include>
 </c:forEach>
@@ -55,9 +67,11 @@
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
-	   <jsp:include page="dbpedia_lookup.jsp">
+	   <jsp:include page="fast_lookup2.jsp">
 	       <jsp:param value="${uri}" name="uri"/>
 	   </jsp:include>
 	   </c:if>
 	</lucene:searchIterator>
 </lucene:search>
+
+<jsp:include page="emit_graph.jsp"/>

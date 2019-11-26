@@ -46,6 +46,7 @@
 </c:forEach>
 
 <lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" useConjunctionByDefault="true" queryString="${rewrittenQuery}">
+<http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">
