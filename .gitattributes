@@ -57,6 +57,7 @@ WebContent/header.jsp -text
 WebContent/images/bullet-l1.gif -text
 WebContent/images/leo.png -text
 WebContent/index.jsp -text
+WebContent/isni_batch.jsp -text
 WebContent/loc_demographics.jsp -text
 WebContent/loc_demographics_batch.jsp -text
 WebContent/loc_demographics_browse.jsp -text
