@@ -27,6 +27,7 @@ WebContent/cerl_corporate_lookup.jsp -text
 WebContent/cerl_corporate_query.jsp -text
 WebContent/cerl_imprint_lookup.jsp -text
 WebContent/cerl_imprint_query.jsp -text
+WebContent/cerl_lookup.jsp -text
 WebContent/cerl_person_lookup.jsp -text
 WebContent/cerl_person_query.jsp -text
 WebContent/dbpedia.jsp -text
