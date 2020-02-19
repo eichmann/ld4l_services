@@ -4,6 +4,18 @@
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
 <%@ taglib prefix="sparql" uri="http://slis.uiowa.edu/SPARQL"%>
 
+<c:choose>
+	<c:when test="${param.entity == 'Subject'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/subject" />
+	</c:when>
+	<c:when test="${param.entity == 'FormOfWork'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/form" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/subject" />
+	</c:otherwise>
+</c:choose>
+
 <c:set var="offset" value="0"/>
 <c:set var="exact_match" value=""/>
 <sparql:setEndpoint var="ld4l" sparqlURL="http://services.ld4l.org/fuseki/mesh/sparql">
@@ -15,13 +27,43 @@
     <sparql:prefix prefix="mads" baseURI="http://www.loc.gov/mads/rdf/v1#"/>
 </sparql:setEndpoint>
 
-<sparql:query var="result" endpoint="${ld4l}" resultType="literal">
-	SELECT ?s WHERE {
-		?s <http://id.nlm.nih.gov/mesh/vocab#prefLabel> ?o@en .
-		?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.nlm.nih.gov/mesh/vocab#Term> .
-	}
-	<sparql:parameter var="o" value="${param.query}" type="literal" />
- </sparql:query>
+<c:choose>
+	<c:when test="${param.entity == 'Subject'}">
+		<sparql:query var="result" endpoint="${ld4l}" resultType="literal">
+			SELECT ?s WHERE {
+			{
+				?s <http://id.nlm.nih.gov/mesh/vocab#prefLabel> ?o@en .
+				?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.nlm.nih.gov/mesh/vocab#TopicalDescriptor> .
+			} UNION {
+				?s <http://id.nlm.nih.gov/mesh/vocab#prefLabel> ?o@en .
+				?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.nlm.nih.gov/mesh/vocab#GeographicalDescriptor> .
+			}
+			}
+			<sparql:parameter var="o" value="${param.query}" type="literal" />
+		 </sparql:query>
+	</c:when>
+	<c:when test="${param.entity == 'FormOfWork'}">
+		<sparql:query var="result" endpoint="${ld4l}" resultType="literal">
+			SELECT ?s WHERE {
+				?s <http://id.nlm.nih.gov/mesh/vocab#prefLabel> ?o@en .
+				?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.nlm.nih.gov/mesh/vocab#PublicationType> .
+			}
+			<sparql:parameter var="o" value="${param.query}" type="literal" />
+		 </sparql:query>
+	</c:when>
+	<c:otherwise>
+		<sparql:query var="result" endpoint="${ld4l}" resultType="literal">
+			SELECT ?s WHERE {
+				?s <http://id.nlm.nih.gov/mesh/vocab#prefLabel> ?o@en .
+				?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.nlm.nih.gov/mesh/vocab#TopicalDescriptor> .
+			} UNION
+				?s <http://id.nlm.nih.gov/mesh/vocab#prefLabel> ?o@en .
+				?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://id.nlm.nih.gov/mesh/vocab#GeographicalDescriptor> .
+			}
+			<sparql:parameter var="o" value="${param.query}" type="literal" />
+		 </sparql:query>
+	</c:otherwise>
+</c:choose>
 
 <c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
 	<c:set var="offset" value="${offset + 1}"/>
@@ -32,7 +74,7 @@
 	</jsp:include>
 </c:forEach>
 
-<lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/mesh" label="content" queryParserName="boolean" queryString="${param.query}">
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="boolean" queryString="${param.query}">
 <http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
