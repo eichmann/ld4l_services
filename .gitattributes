@@ -101,6 +101,7 @@ WebContent/loc_rwo_name_lookup.jsp -text
 WebContent/loc_rwo_name_query.jsp -text
 WebContent/loc_subject.jsp -text
 WebContent/loc_subject_batch.jsp -text
+WebContent/loc_subject_batch2.jsp -text
 WebContent/loc_subject_browse.jsp -text
 WebContent/loc_subject_lookup.jsp -text
 WebContent/loc_subject_query.jsp -text
