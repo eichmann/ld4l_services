@@ -18,7 +18,7 @@
 		<c:set var="page" value="cerl_imprint_lookup.jsp" />
     </c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/person" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/merged" />
 		<c:set var="page" value="cerl_person_lookup.jsp" />
 	</c:otherwise>
 </c:choose>
