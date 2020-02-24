@@ -19,7 +19,7 @@
     </c:when>
 	<c:otherwise>
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/merged" />
-		<c:set var="page" value="cerl_person_lookup.jsp" />
+		<c:set var="page" value="cerl_lookup.jsp" />
 	</c:otherwise>
 </c:choose>
 
