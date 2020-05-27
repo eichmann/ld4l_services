@@ -9,13 +9,13 @@
         <dependent-module archiveName="UtilTagLib-1.0.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/UtilTagLib/UtilTagLib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="ISNITagLib-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ISNITagLib/ISNITagLib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="LuceneTagLib-0.0.8-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/LuceneTagLib/LuceneTagLib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="NLP-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/NLP/NLP">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="ISNITagLib-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ISNITagLib/ISNITagLib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="ld4l_services"/>

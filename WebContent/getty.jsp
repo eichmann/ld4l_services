@@ -31,7 +31,7 @@
                 <input type="radio" id="4" name="entity" value="place" <c:if test="${param.entity == 'place'}">checked</c:if>>  Place (TGN)
                </fieldset>
             </form>
-            Boolean operators include &amp; (and), | (or) and ! (not).
+            ld4l operators include &amp; (and), | (or) and ! (not).
             Parentheses can be used to group terms.
             <p><hr><p>
             <c:if test="${not empty param.query}">
@@ -43,7 +43,7 @@
                 <c:choose>
                     <c:when test="${param.entity == 'concept'}">
                         <lucene:search lucenePath="${index}/aat"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -65,7 +65,7 @@
                     </c:when>
                      <c:when test="${param.entity == 'organization'}">
                         <lucene:search lucenePath="${index}/ulan_organization"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -87,7 +87,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'place'}">
                         <lucene:search lucenePath="${index}/tgn"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -109,7 +109,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'person' or empty param.entity}">
                         <lucene:search lucenePath="${index}/ulan_person"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:

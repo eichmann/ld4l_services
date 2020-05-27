@@ -63,7 +63,7 @@
     lucenePath="${LuceneIndex}"
     useConjunctionByDefault="true"
     label="content"
-    queryParserName="boolean"
+    queryParserName="ld4l"
     queryString="${real_query}">
 <http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">

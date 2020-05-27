@@ -35,7 +35,7 @@
                 <input type="radio" id="8" name="entity" value="genre" <c:if test="${param.entity == 'genre'}">checked</c:if>>  Form Genre
                </fieldset>
             </form>
-            Boolean operators include &amp; (and), | (or) and ! (not).
+            ld4l operators include &amp; (and), | (or) and ! (not).
             Parentheses can be used to group terms.
             <p><hr><p>
             <c:if test="${not empty param.query}">
@@ -47,7 +47,7 @@
                 <c:choose>
                     <c:when test="${param.entity == 'work'}">
                         <lucene:search lucenePath="${index}/work"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -69,7 +69,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'geo'}">
                         <lucene:search lucenePath="${index}/geo"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -91,7 +91,7 @@
                     </c:when>
                      <c:when test="${param.entity == 'intangible'}">
                         <lucene:search lucenePath="${index}/intangible"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -113,7 +113,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'organization'}">
                         <lucene:search lucenePath="${index}/organization"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -135,7 +135,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'place'}">
                         <lucene:search lucenePath="${index}/place"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -157,7 +157,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'concept'}">
                         <lucene:search lucenePath="${index}/concept"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -179,7 +179,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'genre'}">
                         <lucene:search lucenePath="${index}/genre"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -201,7 +201,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'event'}">
                         <lucene:search lucenePath="${index}/event"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:
@@ -223,7 +223,7 @@
                     </c:when>
                     <c:when test="${param.entity == 'person' or empty param.entity}">
                         <lucene:search lucenePath="${index}/person"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:

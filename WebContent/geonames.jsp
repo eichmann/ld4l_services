@@ -50,7 +50,7 @@
                     <input type="radio" name="index" value="extended" <c:if test="${param.index != 'strict'}">checked</c:if>>Extended (include terms associated with the entity's parent(s))
                </fieldset>
             </form>
-            Boolean operators include &amp; (and), | (or) and ! (not).
+            ld4l operators include &amp; (and), | (or) and ! (not).
             Parentheses can be used to group terms.
             <p><hr><p>
             <c:if test="${not empty param.query}">
@@ -106,7 +106,7 @@
                 </c:choose>
             </c:if>
 
-			<lucene:search lucenePath="${lucenePath}" label="content" queryParserName="boolean" queryString="${param.query}">
+			<lucene:search lucenePath="${lucenePath}" label="content" queryParserName="ld4l" queryString="${param.query}">
             	<p>Result Count: <lucene:count /></p>
           		<ol class="bulletedList">
                	<lucene:searchIterator>

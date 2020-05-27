@@ -35,7 +35,7 @@
 				<c:choose>
 					<c:when test="${param.mode == 'triple'}">
 						<lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/subjects"
-							label="content" queryParserName="boolean"
+							label="content" queryParserName="ld4l"
 							queryString="${param.query}">
 							<p>
 								Result Count:
@@ -50,7 +50,7 @@
 					</c:when>
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
                         <lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/loc/subjects"
-                            label="content" queryParserName="boolean"
+                            label="content" queryParserName="ld4l"
                             queryString="${param.query}">
                             <p>
                                 Result Count:

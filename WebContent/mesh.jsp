@@ -25,7 +25,7 @@
                     <input type="radio" name="mode" value="literal" <c:if test="${param.mode != 'triple'}">checked</c:if>>Display as HTML table
                </fieldset>
             </form>
-            Boolean operators include &amp; (and), | (or) and ! (not).
+            ld4l operators include &amp; (and), | (or) and ! (not).
             Parentheses can be used to group terms.
             <p><hr><p>
             <c:if test="${not empty param.query}">
@@ -34,7 +34,7 @@
                     <c:out value="${param.query}" />
                 </h3>
                 <lucene:search lucenePath="/usr/local/RAID/LD4L/lucene/mesh"
-                    label="content" queryParserName="boolean"
+                    label="content" queryParserName="ld4l"
                     queryString="${param.query}">
                     <p>
                         Result Count:

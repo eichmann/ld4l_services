@@ -70,7 +70,7 @@
 							</c:forEach>
 						</fieldset>
 					</form>
-					Boolean operators include &amp; (and), | (or) and ! (not).
+					ld4l operators include &amp; (and), | (or) and ! (not).
 					Parentheses can be used to group terms.
 				</div>
 				<div id="searchResults">
@@ -82,7 +82,7 @@
                         <h3>Search Results: <c:out value="${filteredQuery}" /></h3>
 						<lucene:search
 							lucenePath="/usr/local/RAID/LD4L/lucene/getty/aat_facets"
-							label="content" queryParserName="boolean"
+							label="content" queryParserName="ld4l"
 							useConjunctionByDefault="true"
 							queryString="${filteredQuery}">
 							<p>
