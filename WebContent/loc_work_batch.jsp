@@ -58,9 +58,7 @@
             </jsp:include>
         </c:if>
         <c:if test="${not empty param.context}">
-            <jsp:include page="loc_work_context.jsp">
-                <jsp:param value="${uri}" name="uri"/>
-            </jsp:include>
+<lucene:hit label="payload" />
         </c:if>
         </c:if>
 	</lucene:searchIterator>

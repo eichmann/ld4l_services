@@ -54,9 +54,7 @@
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
-             <jsp:include page="loc_genre_query.jsp">
-                <jsp:param value="${uri}" name="uri"/>
-            </jsp:include>
+<lucene:hit label="payload" />
         </c:if>
 	</lucene:searchIterator>
 </lucene:search>
