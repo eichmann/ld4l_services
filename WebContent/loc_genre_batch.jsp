@@ -43,7 +43,7 @@
 	<c:set var="offset" value="${offset + 1}"/>
 	<c:set var="exact_match" value="${row.s}"/>
 <${row.s}>   <http://vivoweb.org/ontology/core#rank>   "${offset}" .
-            <jsp:include page="loc_genre_query.jsp">
+            <jsp:include page="loc_genre_lookup.jsp">
                 <jsp:param value="${row.s}" name="uri"/>
             </jsp:include>
 </c:forEach>
