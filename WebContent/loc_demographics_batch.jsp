@@ -45,14 +45,14 @@
        </c:if>
 </c:forEach>
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" useConjunctionByDefault="true" queryString="${rewrittenQuery}">
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" useConjunctionByDefault="true" useStemming="true" queryString="${rewrittenQuery}">
 <http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
 	        <c:if test="${empty param.context}">
-<lucene:hit label="payload" />
+<${uri}> <http://www.w3.org/2004/02/skos/core#prefLabel> "<lucene:hit label="name" />" .
 	        </c:if>
 	        <c:if test="${not empty param.context}">
 <lucene:hit label="payload" />

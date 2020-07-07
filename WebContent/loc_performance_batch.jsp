@@ -30,21 +30,21 @@
 	<sparql:parameter var="o" value="${param.query}" type="literal" />
  </sparql:query>
 
-<c:forEach items="${result.rows}" var="row" varStatus="rowCounter">
-	<c:set var="offset" value="${offset + 1}"/>
-	<c:set var="exact_match" value="${row.s}"/>
-<${row.s}>   <http://vivoweb.org/ontology/core#rank>   "${offset}" .
-        <c:if test="${empty param.context}">
-            <jsp:include page="loc_performance_lookup.jsp">
-                <jsp:param value="${row.s}" name="uri"/>
-            </jsp:include>
-        </c:if>
-        <c:if test="${not empty param.context}">
-            <jsp:include page="loc_performance_context.jsp">
-                <jsp:param value="${row.s}" name="uri"/>
-            </jsp:include>
-        </c:if>
-</c:forEach>
+<%-- <c:forEach items="${result.rows}" var="row" varStatus="rowCounter"> --%>
+<%-- 	<c:set var="offset" value="${offset + 1}"/> --%>
+<%-- 	<c:set var="exact_match" value="${row.s}"/> --%>
+<%-- <${row.s}>   <http://vivoweb.org/ontology/core#rank>   "${offset}" . --%>
+<%--         <c:if test="${empty param.context}"> --%>
+<%--             <jsp:include page="loc_performance_lookup.jsp"> --%>
+<%--                 <jsp:param value="${row.s}" name="uri"/> --%>
+<%--             </jsp:include> --%>
+<%--         </c:if> --%>
+<%--         <c:if test="${not empty param.context}"> --%>
+<%--             <jsp:include page="loc_performance_context.jsp"> --%>
+<%--                 <jsp:param value="${row.s}" name="uri"/> --%>
+<%--             </jsp:include> --%>
+<%--         </c:if> --%>
+<%-- </c:forEach> --%>
 
 <lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" useConjunctionByDefault="true" queryString="${rewrittenQuery}">
 <http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
@@ -53,9 +53,7 @@
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
         <c:if test="${empty param.context}">
-            <jsp:include page="loc_performance_query.jsp">
-                <jsp:param value="${uri}" name="uri"/>
-            </jsp:include>
+<lucene:hit label="payload" />
         </c:if>
         <c:if test="${not empty param.context}">
 <lucene:hit label="payload" />
