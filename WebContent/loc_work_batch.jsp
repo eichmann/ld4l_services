@@ -53,9 +53,7 @@
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
         <c:if test="${empty param.context}">
-            <jsp:include page="loc_work_lookup.jsp">
-                <jsp:param value="${uri}" name="uri"/>
-            </jsp:include>
+<${uri}> <http://www.w3.org/2000/01/rdf-schema#label> "<lucene:hit label="name" />" .
         </c:if>
         <c:if test="${not empty param.context}">
 <lucene:hit label="payload" />
