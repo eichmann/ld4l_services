@@ -6,22 +6,22 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'Person Organization'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/ulan" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/getty_ulan" />
 	</c:when>
 	<c:when test="${param.entity == 'Person'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/ulan_person" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/getty_ulan_person" />
 	</c:when>
 	<c:when test="${param.entity == 'Organization'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/ulan_organization" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/getty_ulan_organization" />
 	</c:when>
 	<c:when test="${param.entity == 'Place'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/tgn" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/getty_tgn" />
 	</c:when>
 	<c:when test="${param.entity == 'Concept'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/aat" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/getty_aat" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/ulan_person" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/getty/getty" />
 	</c:otherwise>
 </c:choose>
 
@@ -70,9 +70,7 @@
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${uri != exact_match}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
-	   <jsp:include page="getty_lookup.jsp">
-	       <jsp:param value="${uri}" name="uri"/>
-	   </jsp:include>
+<lucene:hit label="payload" />
         </c:if>
 	</lucene:searchIterator>
 </lucene:search>
