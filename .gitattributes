@@ -105,6 +105,7 @@ WebContent/loc_subject_batch2.jsp -text
 WebContent/loc_subject_browse.jsp -text
 WebContent/loc_subject_lookup.jsp -text
 WebContent/loc_subject_query.jsp -text
+WebContent/loc_vocab_batch.jsp -text
 WebContent/loc_work.jsp -text
 WebContent/loc_work_batch.jsp -text
 WebContent/loc_work_browse.jsp -text
