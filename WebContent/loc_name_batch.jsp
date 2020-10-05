@@ -6,13 +6,13 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'Person'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/persons" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_persons" />
 	</c:when>
 	<c:when test="${param.entity == 'Organization'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/organizations" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_organizations" />
 	</c:when>
 	<c:when test="${param.entity == 'Work'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/titles" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_titles" />
 	</c:when>
 	<c:otherwise>
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names" />

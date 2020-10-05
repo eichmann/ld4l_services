@@ -13,7 +13,7 @@
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_deprecated" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_active" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre" />
 	</c:otherwise>
 </c:choose>
 

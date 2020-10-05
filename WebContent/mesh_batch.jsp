@@ -12,7 +12,7 @@
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/form" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/subject" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/mesh" />
 	</c:otherwise>
 </c:choose>
 

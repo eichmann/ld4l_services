@@ -4,7 +4,7 @@
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
 <%@ taglib prefix="sparql" uri="http://slis.uiowa.edu/SPARQL"%>
 
-<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/rda/${param.entity}" />
+<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/rda/rda_${param.entity}" />
 
 <c:set var="offset" value="0"/>
 <c:set var="exact_match" value=""/>
