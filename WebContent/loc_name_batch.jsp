@@ -14,6 +14,15 @@
 	<c:when test="${param.entity == 'Work'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_titles" />
 	</c:when>
+	<c:when test="${param.entity == 'Family'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_family" />
+	</c:when>
+	<c:when test="${param.entity == 'Geographic'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_geographic" />
+	</c:when>
+	<c:when test="${param.entity == 'Conference'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_conference" />
+	</c:when>
 	<c:otherwise>
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names" />
 	</c:otherwise>
