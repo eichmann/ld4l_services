@@ -61,7 +61,7 @@
 
 <lucene:search
     lucenePath="${LuceneIndex}"
-    useConjunctionByDefault="true"
+    useStemming="true"
     label="content"
     queryParserName="ld4l"
     queryString="${real_query}">
