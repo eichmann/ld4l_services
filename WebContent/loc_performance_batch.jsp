@@ -24,7 +24,7 @@
     </lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" useConjunctionByDefault="true" queryString="${param.query}">
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" useStemming="true" queryString="${param.query}">
 <http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>

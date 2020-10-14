@@ -20,7 +20,7 @@
 	<c:when test="${param.entity == 'Geographic'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_geographic" />
 	</c:when>
-	<c:when test="${param.entity == 'Conference'}">
+	<c:when test="${param.entity == 'ConferenceName'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_conference" />
 	</c:when>
 	<c:otherwise>
@@ -55,7 +55,7 @@
 	</jsp:include>
 </c:forEach>
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" queryString="${param.query}" >
 <http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>

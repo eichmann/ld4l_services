@@ -6,16 +6,16 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'Person'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/locRWO/persons" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/rwo_persons" />
 	</c:when>
 	<c:when test="${param.entity == 'Organization'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/locRWO/organizations" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/rwo_organizations" />
 	</c:when>
 	<c:when test="${param.entity == 'Work'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/locRWO/titles" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/rwo_titles" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/locRWO/names" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/rwo" />
 	</c:otherwise>
 </c:choose>
 
@@ -47,7 +47,7 @@
 </c:forEach>
 
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
+<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" queryString="${param.query}" >
 <http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
 		<c:set var="uri"><lucene:hit label="uri" /></c:set>
