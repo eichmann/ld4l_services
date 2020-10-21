@@ -17,50 +17,17 @@
 </jsp:include>
 <div id="centerCol">
 <h2>LoC Search by Name</h2>
-<!-- http://guardian.slis.uiowa.edu:8080/ld4l_services/loc_name_search.jsp?q=twain&maximumRecords=3&language=en -->
-<!-- http://guardian.slis.uiowa.edu:8080/ld4l_services/loc_name_search.jsp?q=twain&maximumRecords=3&language=en&type=personalName -->
-<!--  
- "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" , "14245250" ,
- "http://www.loc.gov/mads/rdf/v1#Authority" , "12136388" ,
- "http://www.loc.gov/mads/rdf/v1#PersonalName" , "9508186" ,
- "http://www.w3.org/2004/02/skos/core#Concept" , "9453032" ,
- "http://www.loc.gov/mads/rdf/v1#Source" , "8143133" ,
- "http://www.loc.gov/mads/rdf/v1#Variant" , "3741203" ,
- "http://www.loc.gov/mads/rdf/v1#CorporateName" , "2582024" ,
- "http://www.loc.gov/mads/rdf/v1#Title" , "2072287" ,
- "http://www.loc.gov/mads/rdf/v1#TitleElement" , "1483160" ,
- "http://www.loc.gov/mads/rdf/v1#FullNameElement" , "1303255" ,
- "http://www.loc.gov/mads/rdf/v1#NameTitle" , "1158456" ,
- "http://www.loc.gov/mads/rdf/v1#DateNameElement" , "799896" ,
- "http://www.loc.gov/mads/rdf/v1#LanguageElement" , "356030" ,
- "http://www.loc.gov/mads/rdf/v1#ConferenceName" , "303710" ,
- "http://www.loc.gov/mads/rdf/v1#Geographic" , "250059" ,
- "http://www.loc.gov/mads/rdf/v1#GenreFormElement" , "168142" ,
- "http://www.loc.gov/mads/rdf/v1#NameElement" , "99497" ,
- "http://www.loc.gov/mads/rdf/v1#PartNumberElement" , "57566" ,
- "http://www.loc.gov/mads/rdf/v1#PartNameElement" , "53880" ,
- "http://www.loc.gov/mads/rdf/v1#TermsOfAddressNameElement" , "41994" ,
- "http://www.loc.gov/mads/rdf/v1#TemporalElement" , "28164" ,
- "http://www.loc.gov/mads/rdf/v1#GeographicElement" , "7851" ,
- "http://www.loc.gov/mads/rdf/v1#DeprecatedAuthority" , "3178" ,
- "http://www.loc.gov/mads/rdf/v1#NamePartElement" , "632" ,
- "http://www.loc.gov/mads/rdf/v1#Topic" , "32" ,
- "http://www.loc.gov/mads/rdf/v1#ComplexSubject" , "27" ,
- "http://www.loc.gov/mads/rdf/v1#TopicElement" , "24" ,
- "http://www.loc.gov/mads/rdf/v1#FamilyName" , "23" ,
- "http://www.loc.gov/mads/rdf/v1#GenreForm" , "10" ,
- "http://www.loc.gov/mads/rdf/v1#RWO" , "3" ,
- "http://xmlns.com/foaf/0.1/Person" , "3" ,
- "http://www.loc.gov/mads/rdf/v1#MainTitleElement" , "1" ,
--->
 			<form method='POST' action='loc_name.jsp'>
 				<input name="query" value="${param.query}" size=50> <input
 					type=submit name=submitButton value=Search><br>
                 <fieldset><legend>Ontology class?</legend>
                     <select name="entity">
-                        <option value="PersonalName" <c:if test="${param.entity == 'PersonalName'}">selected</c:if>>PersonalName</option>
-                        <option value="CorporateName" <c:if test="${param.entity == 'CorporateName'}">selected</c:if>>CorporateName</option>
-                        <option value="Title" <c:if test="${param.entity == 'Title'}">selected</c:if>>Title</option>
+                        <option value="Person" <c:if test="${param.entity == 'Person'}">selected</c:if>>Person</option>
+                        <option value="Organization" <c:if test="${param.entity == 'Organization'}">selected</c:if>>Organization</option>
+                        <option value="Work" <c:if test="${param.entity == 'Work'}">selected</c:if>>Work</option>
+                       <option value="Family" <c:if test="${param.entity == 'Family'}">selected</c:if>>Family</option>
+                       <option value="Geographic" <c:if test="${param.entity == 'Geographic'}">selected</c:if>>Geographic</option>
+                       <option value="ConferenceName" <c:if test="${param.entity == 'ConferenceName'}">selected</c:if>>Conference Name</option>
                         <option value="all" <c:if test="${param.entity == 'all' or empty param.entity}">selected</c:if>>all</option>
                     </select>
                 </fieldset>
@@ -76,24 +43,33 @@
 					<c:out value="${param.query}" />
 				</h3>
 				<c:choose>
-				    <c:when test="${param.entity == 'PersonalName'}">
-				        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/persons"/>
-				    </c:when>
-                    <c:when test="${param.entity == 'CorporateName'}">
-                        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/organizations"/>
-                    </c:when>
-                    <c:when test="${param.entity == 'Title'}">
-                        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/titles"/>
-                    </c:when>
-				    <c:otherwise>
-                        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names"/>
-				    </c:otherwise>
+					<c:when test="${param.entity == 'Person'}">
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_persons" />
+					</c:when>
+					<c:when test="${param.entity == 'Organization'}">
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_organizations" />
+					</c:when>
+					<c:when test="${param.entity == 'Work'}">
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_titles" />
+					</c:when>
+					<c:when test="${param.entity == 'Family'}">
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_family" />
+					</c:when>
+					<c:when test="${param.entity == 'Geographic'}">
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_geographic" />
+					</c:when>
+					<c:when test="${param.entity == 'ConferenceName'}">
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names_conference" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/names" />
+					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${param.mode == 'triple'}">
 						<lucene:search lucenePath="${LuceneIndex}"
 							label="content" queryParserName="ld4l"
-							queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
+							queryString="${param.query}">
 							<p>
 								Result Count:
 								<lucene:count />
@@ -108,7 +84,7 @@
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
                         <lucene:search lucenePath="${LuceneIndex}"
                             label="content" queryParserName="ld4l"
-                            queryString="${param.query}" useConjunctionByDefault="true" useDateHack="true" >
+                            queryString="${param.query}" >
                             <p>
                                 Result Count:
                                 <lucene:count />
