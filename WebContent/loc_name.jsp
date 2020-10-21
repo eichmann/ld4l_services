@@ -83,7 +83,7 @@
 					</c:when>
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
                         <lucene:search lucenePath="${LuceneIndex}"
-                            label="content" queryParserName="ld4l"
+                            label="prefcontent" queryParserName="ld4l"
                             queryString="${param.query}" >
                             <p>
                                 Result Count:
