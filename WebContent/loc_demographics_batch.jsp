@@ -8,12 +8,13 @@
 <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/demographics" />
 
 <c:set var="offset" value="0"/>
-<c:set var="exact_match" value=""/>
+<util:hashTable cacheName="matches">
 
 <lucene:search lucenePath="${LuceneIndex}" label="name" queryParserName="ld4l" useExactMatch="true" queryString="${param.query}">
     <lucene:searchIterator limitCriteria="1">
         <c:set var="offset" value="${offset + 1}"/>
         <c:set var="exact_match"><lucene:hit label="uri" /></c:set>
+        <util:hashEntry key="${exact_match}"/>
 <<lucene:hit label="uri" />> <http://vivoweb.org/ontology/core#rank> "${offset}" .
         <c:if test="${empty param.context}">
 <<lucene:hit label="uri" />> <http://www.w3.org/2004/02/skos/core#prefLabel> "<lucene:hit label="name" />" .
@@ -24,11 +25,23 @@
     </lucene:searchIterator>
 </lucene:search>
 
+<lucene:search lucenePath="${LuceneIndex}" label="prefcontent" queryParserName="ld4l" useStemming="true" queryString="${param.query}">
+<http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
+	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
+       <c:set var="uri"><lucene:hit label="uri" /></c:set>
+		<c:if test="${!util:keyExists(uri)}">
+	        <util:hashEntry key="${uri}"/>
+<${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
+<lucene:hit label="payload" />
+        </c:if>
+	</lucene:searchIterator>
+</lucene:search>
+
 <lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" useStemming="true" queryString="${param.query}">
 <http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
-		<c:if test="${uri != exact_match}">
+		<c:if test="${!util:keyExists(uri)}">
 <${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
 	        <c:if test="${empty param.context}">
 <${uri}> <http://www.w3.org/2004/02/skos/core#prefLabel> "<lucene:hit label="name" />" .
@@ -39,3 +52,4 @@
 		</c:if>
 	</lucene:searchIterator>
 </lucene:search>
+</util:hashTable>

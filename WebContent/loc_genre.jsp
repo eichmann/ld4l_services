@@ -38,25 +38,22 @@
 					<c:out value="${param.entity}" />
 					<c:out value="${param.query}" />
 				</h3>
-                <c:set var="rewrittenQuery" value="${fn:replace(param.query,'(', ' ')}"/>
-                <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,')', ' ')}"/>
-                <c:set var="rewrittenQuery" value="${fn:replace(rewrittenQuery,'-', ' ')}"/>
-				<c:choose>
-					<c:when test="${param.entity == 'active'}">
-						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_active" />
-					</c:when>
-					<c:when test="${param.entity == 'deprecated'}">
-						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_deprecated" />
-					</c:when>
-					<c:otherwise>
-						<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_active" />
-					</c:otherwise>
-				</c:choose>
+<c:choose>
+	<c:when test="${param.entity == 'active'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_active" />
+	</c:when>
+	<c:when test="${param.entity == 'deprecated'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre_deprecated" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/genre" />
+	</c:otherwise>
+</c:choose>
 				<c:choose>
 					<c:when test="${param.mode == 'triple'}">
 						<lucene:search lucenePath="${LuceneIndex}"
-							label="content" queryParserName="ld4l"
-							queryString="${rewrittenQuery}">
+							label="content" queryParserName="ld4l" useStemming="true" 
+							queryString="${param.query}">
 							<p>
 								Result Count:
 								<lucene:count />
@@ -70,8 +67,8 @@
 					</c:when>
 					<c:when test="${param.mode == 'literal' or empty param.mode}">
                         <lucene:search lucenePath="${LuceneIndex}"
-                            label="content" queryParserName="ld4l"
-                            queryString="${rewrittenQuery}">
+                            label="content" queryParserName="ld4l" useStemming="true" 
+                            queryString="${param.query}">
                             <p>
                                 Result Count:
                                 <lucene:count />
