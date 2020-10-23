@@ -113,6 +113,7 @@ WebContent/loc_work_lookup.jsp -text
 WebContent/local_index.jsp -text
 WebContent/local_menu_end.jsp -text
 WebContent/local_menu_home.jsp -text
+WebContent/lucene_search.jsp -text
 WebContent/menu.jsp -text
 WebContent/mesh.jsp -text
 WebContent/mesh_batch.jsp -text

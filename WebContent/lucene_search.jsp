@@ -4,12 +4,10 @@
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
 <%@ taglib prefix="sparql" uri="http://slis.uiowa.edu/SPARQL"%>
 
-<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/loc/subjects" />
-
 <c:set var="offset" value="0"/>
 <util:hashTable cacheName="matches">
 
-<lucene:search lucenePath="${LuceneIndex}" label="name" queryParserName="ld4l" useExactMatch="true" queryString="${param.query}">
+<lucene:search lucenePath="${param.LuceneIndex}" label="name" queryParserName="ld4l" useExactMatch="true" queryString="${param.query}">
     <lucene:searchIterator limitCriteria="1">
         <c:set var="offset" value="${offset + 1}"/>
         <c:set var="exact_match"><lucene:hit label="uri" /></c:set>
@@ -19,26 +17,40 @@
     </lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${LuceneIndex}" label="prefcontent" queryParserName="ld4l" useStemming="true" queryString="${param.query}">
-<http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
+<lucene:search lucenePath="${param.LuceneIndex}" label="prefcontent" queryParserName="ld4l" queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${!util:keyExists(uri)}">
+	        <c:set var="offset" value="${offset + 1}"/>
 	        <util:hashEntry key="${uri}"/>
-<${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
+<${uri}> <http://vivoweb.org/ontology/core#rank> "${offset}" .
 <lucene:hit label="payload" />
         </c:if>
 	</lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${LuceneIndex}" label="content" queryParserName="ld4l" queryString="${param.query}" useStemming="true" >
-<http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "<lucene:count/>" .
+<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${!util:keyExists(uri)}">
-<${uri}> <http://vivoweb.org/ontology/core#rank> "<lucene:hitRank/>" .
+	        <c:set var="offset" value="${offset + 1}"/>
+	        <util:hashEntry key="${uri}"/>
+<${uri}> <http://vivoweb.org/ontology/core#rank> "${offset}" .
 <lucene:hit label="payload" />
-	   </c:if>
+        </c:if>
 	</lucene:searchIterator>
 </lucene:search>
+
+<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" defaultOperator="OR" queryString="${param.query}">
+	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
+       <c:set var="uri"><lucene:hit label="uri" /></c:set>
+		<c:if test="${!util:keyExists(uri)}">
+	        <c:set var="offset" value="${offset + 1}"/>
+<${uri}> <http://vivoweb.org/ontology/core#rank> "${offset}" .
+<lucene:hit label="payload" />
+        </c:if>
+	</lucene:searchIterator>
+</lucene:search>
+
+<http://ld4l.org/ld4l_services/cache> <http://vivoweb.org/ontology/core#count> "${offset}" .
 </util:hashTable>
