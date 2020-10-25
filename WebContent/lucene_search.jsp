@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
-<%@ taglib prefix="sparql" uri="http://slis.uiowa.edu/SPARQL"%>
 
 <c:set var="offset" value="0"/>
 <util:hashTable cacheName="matches">
@@ -17,7 +16,7 @@
     </lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${param.LuceneIndex}" label="prefcontent" queryParserName="ld4l" queryString="${param.query}">
+<lucene:search lucenePath="${param.LuceneIndex}" label="prefcontent" queryParserName="ld4l" useStemming="${param.stemming} queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${!util:keyExists(uri)}">
@@ -29,7 +28,7 @@
 	</lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" queryString="${param.query}">
+<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" useStemming="${param.stemming} queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${!util:keyExists(uri)}">
@@ -41,7 +40,7 @@
 	</lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" defaultOperator="OR" queryString="${param.query}">
+<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" useStemming="${param.stemming} defaultOperator="OR" queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${!util:keyExists(uri)}">

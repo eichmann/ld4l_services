@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="application/n-triples; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
-<%@ taglib prefix="lucene" uri="http://icts.uiowa.edu/lucene"%>
-<%@ taglib prefix="sparql" uri="http://slis.uiowa.edu/SPARQL"%>
 
 <c:choose>
 	<c:when test="${param.entity == 'Person Organization'}">
@@ -31,7 +28,7 @@
 	<c:set var="real_query" value="${param.query} AAT${param.facet}" />
 </c:if>
 
-
 <jsp:include page="lucene_search.jsp">
-	<jsp:param value="${LuceneIndex}" name="LuceneIndex"/>
+    <jsp:param value="${LuceneIndex}" name="LuceneIndex"/>
+    <jsp:param value="true" name="stemming"/>
 </jsp:include>
