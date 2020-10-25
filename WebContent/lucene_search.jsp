@@ -16,7 +16,7 @@
     </lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${param.LuceneIndex}" label="prefcontent" queryParserName="ld4l" useStemming="${param.stemming} queryString="${param.query}">
+<lucene:search lucenePath="${param.LuceneIndex}" label="prefcontent" queryParserName="ld4l" useStemming="${param.stemming}" queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${!util:keyExists(uri)}">
@@ -28,7 +28,7 @@
 	</lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" useStemming="${param.stemming} queryString="${param.query}">
+<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" useStemming="${param.stemming}" queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${!util:keyExists(uri)}">
@@ -40,7 +40,7 @@
 	</lucene:searchIterator>
 </lucene:search>
 
-<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" useStemming="${param.stemming} defaultOperator="OR" queryString="${param.query}">
+<lucene:search lucenePath="${param.LuceneIndex}" label="content" queryParserName="ld4l" useStemming="${param.stemming}" defaultOperator="OR" queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
 		<c:if test="${!util:keyExists(uri)}">

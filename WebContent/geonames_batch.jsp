@@ -51,6 +51,6 @@
 </c:choose>
 
 <jsp:include page="lucene_search.jsp">
-    <jsp:param value="${LuceneIndex}" name="LuceneIndex"/>
+    <jsp:param value="${lucenePath}" name="LuceneIndex"/>
     <jsp:param value="true" name="stemming"/>
 </jsp:include>

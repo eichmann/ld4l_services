@@ -15,16 +15,16 @@
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_Place" />
     </c:when>
     <c:when test="${param.entity == 'Work'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/CreativeWork" />
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_CreativeWork" />
     </c:when>
     <c:when test="${param.entity == 'GeoCoordinates'}">
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_GeoCoordinates" />
     </c:when>
     <c:when test="${param.entity == 'Concept'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/concept" />
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_facet-Topical" />
     </c:when>
     <c:when test="${param.entity == 'Genre'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/genre" />
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_facet-FormGenre" />
     </c:when>
     <c:when test="${param.entity == 'Event'}">
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_Event" />
