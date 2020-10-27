@@ -3,10 +3,10 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'Subject'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/subject" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/mesh_topicaldescriptor" />
 	</c:when>
 	<c:when test="${param.entity == 'FormOfWork'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/form" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/mesh_publicationtype" />
 	</c:when>
 	<c:otherwise>
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/mesh" />
