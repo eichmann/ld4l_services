@@ -9,7 +9,7 @@
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_Organization" />
 	</c:when>
     <c:when test="${param.entity == 'Intangible'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/intangible" />
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_Intangible" />
     </c:when>
     <c:when test="${param.entity == 'Place'}">
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_Place" />
@@ -27,7 +27,10 @@
         <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_facet-FormGenre" />
     </c:when>
     <c:when test="${param.entity == 'Event'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_Event" />
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_event_meeting" />
+    </c:when>
+    <c:when test="${param.entity == 'Meeting'}">
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast_event_meeting" />
     </c:when>
 	<c:otherwise>
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/fast/fast" />

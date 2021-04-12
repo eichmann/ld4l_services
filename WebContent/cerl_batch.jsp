@@ -3,16 +3,16 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'Person'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/person" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/cerl_person" />
 	</c:when>
 	<c:when test="${param.entity == 'Corporate'}">
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/corporate" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/cerl_corporate" />
 	</c:when>
     <c:when test="${param.entity == 'Imprint'}">
-        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/imprint" />
+        <c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/cerl_imprint" />
     </c:when>
 	<c:otherwise>
-		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/merged" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/cerl/cerl" />
 	</c:otherwise>
 </c:choose>
 
