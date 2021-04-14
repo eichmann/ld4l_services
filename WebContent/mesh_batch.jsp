@@ -8,6 +8,9 @@
 	<c:when test="${param.entity == 'FormOfWork'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/mesh_publicationtype" />
 	</c:when>
+	<c:when test="${param.entity == 'Geographic'}">
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/mesh_geographicaldescriptor" />
+	</c:when>
 	<c:otherwise>
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/mesh/mesh" />
 	</c:otherwise>
