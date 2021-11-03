@@ -27,6 +27,9 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="LuceneTagLib-0.0.8-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/LuceneTagLib/LuceneTagLib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
                                                         
         
         
