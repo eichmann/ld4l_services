@@ -16,6 +16,18 @@
     </lucene:searchIterator>
 </lucene:search>
 
+<lucene:search lucenePath="${param.LuceneIndex}" label="name_lower" queryParserName="ld4l" useExactMatch="true" caseSensitive="false" queryString="${param.query}">
+    <lucene:searchIterator limitCriteria="1">
+        <c:set var="exact_match"><lucene:hit label="uri" /></c:set>
+		<c:if test="${!util:keyExists(uri)}">
+	        <c:set var="offset" value="${offset + 1}"/>
+    	    <util:hashEntry key="${exact_match}"/>
+<<lucene:hit label="uri" />> <http://vivoweb.org/ontology/core#rank> "${offset}" .
+<lucene:hit label="payload" />
+		</c:if>
+    </lucene:searchIterator>
+</lucene:search>
+
 <lucene:search lucenePath="${param.LuceneIndex}" label="prefcontent" queryParserName="ld4l" useStemming="${param.stemming}" queryString="${param.query}">
 	<lucene:searchIterator limitCriteria="${param.maxRecords - offset}" startCriteria="${param.startRecord}" rankOffset="${offset}">
        <c:set var="uri"><lucene:hit label="uri" /></c:set>
