@@ -3,7 +3,7 @@
 
 <c:choose>
 	<c:when test="${param.entity == 'Work'}">
-		<c:set var="LuceneIndex" value="/Users/eichmann/Documents/Components/lucene/pcc/pcc_Work" />
+		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/pcc/pcc_Work" />
 	</c:when>
 	<c:when test="${param.entity == 'Opus'}">
 		<c:set var="LuceneIndex" value="/usr/local/RAID/LD4L/lucene/pcc/pcc_Opus" />
