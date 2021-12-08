@@ -125,6 +125,7 @@ WebContent/nalt_batch.jsp -text
 WebContent/nalt_browse.jsp -text
 WebContent/nalt_lookup.jsp -text
 WebContent/pcc_batch.jsp -text
+WebContent/pcc_lookup.jsp -text
 WebContent/rda.jsp -text
 WebContent/rda_batch.jsp -text
 WebContent/rda_browse.jsp -text
