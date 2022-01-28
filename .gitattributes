@@ -67,6 +67,7 @@ WebContent/images/bullet-l1.gif -text
 WebContent/images/leo.png -text
 WebContent/index.jsp -text
 WebContent/isni_batch.jsp -text
+WebContent/isni_live_batch.jsp -text
 WebContent/ligatus_batch.jsp -text
 WebContent/ligatus_lookup.jsp -text
 WebContent/ligatus_query.jsp -text
