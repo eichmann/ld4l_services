@@ -1,0 +1,32 @@
+volumes:
+  lucene: 
+    driver_opts: 
+      type: 'none'
+      o: 'bind'
+      device: './lucene'
+      # to refresh your index files from s3 you must delete the contents of /lucene
+
+services:
+  # comment out this container if you don't want to copy new data from S3
+  s3-volume-copy:
+    image: elementar/s3-volume  # https://github.com/elementar/docker-s3-volume
+    command: /lucene s3://ld4p-cache-index
+    environment: 
+      - S3_SYNC_FLAGS=""
+      - AWS_ACCESS_KEY_ID       # place your credentials in a .env file to populate these
+      - AWS_SECRET_ACCESS_KEY   # any valid keypair will do, even one with no privileges
+    volumes:
+      - lucene:/lucene
+  app: &app
+    build:
+      context: .
+    image: ld4l_services
+    container_name: ld4l_services
+    stdin_open: true
+    tty: true
+    user: root
+    volumes:
+      - lucene:/usr/local/RAID/LD4L/lucene
+    ports:
+      - "8888:8080"
+
