@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                        
+                                            
+    
     
     
     
@@ -9,7 +10,8 @@
     
     
     <wb-module deploy-name="ld4l_services-0.0.1-SNAPSHOT">
-                                                                                
+                                                                                        
+        
         
         
         
@@ -19,7 +21,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                                                                                
+                                                                                        
+        
         
         
         
@@ -29,7 +32,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-                                                                                
+                                                                                        
+        
         
         
         
@@ -39,22 +43,14 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module archiveName="SPARQLTagLib-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SPARQLTagLib/SPARQLTagLib">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="UtilTagLib-1.0.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/UtilTagLib/UtilTagLib">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="ISNITagLib-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ISNITagLib/ISNITagLib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="LuceneTagLib-0.0.8-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/LuceneTagLib/LuceneTagLib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="NLP-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/NLP/NLP">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-                                                                                
+                                                                                        
+        
         
         
         
@@ -64,7 +60,8 @@
         
         
         <property name="context-root" value="ld4l_services"/>
-                                                                                
+                                                                                        
+        
         
         
         
@@ -74,7 +71,8 @@
         
         
         <property name="java-output-path" value="/ld4l_services/build/classes"/>
-                                                                            
+                                                                                    
+    
     
     
     
@@ -84,7 +82,8 @@
     
     
     </wb-module>
-                                    
+                                        
+
 
 
 
