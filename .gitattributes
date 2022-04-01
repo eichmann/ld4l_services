@@ -63,6 +63,7 @@ WebContent/getty_browse.jsp -text
 WebContent/getty_lookup.jsp -text
 WebContent/hash_test.jsp -text
 WebContent/header.jsp -text
+WebContent/homosaurus_batch.jsp -text
 WebContent/images/bullet-l1.gif -text
 WebContent/images/leo.png -text
 WebContent/index.jsp -text
