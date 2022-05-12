@@ -73,6 +73,8 @@ WebContent/isni_live_batch.jsp -text
 WebContent/ligatus_batch.jsp -text
 WebContent/ligatus_lookup.jsp -text
 WebContent/ligatus_query.jsp -text
+WebContent/loc_countries_batch.jsp -text
+WebContent/loc_countries_lookup.jsp -text
 WebContent/loc_cultural_organizations_batch.jsp -text
 WebContent/loc_cultural_organizations_lookup.jsp -text
 WebContent/loc_demographics.jsp -text
