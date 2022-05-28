@@ -3,3 +3,9 @@
 ld4l_services.war
 lucene
 *.env
+.terraform
+*.tfstate
+*.tfstate.backup
+.terraform.tfstate.lock.info
+.terraform.lock.hcl
+*.tfvars
