@@ -14,7 +14,7 @@
 </sparql:setEndpoint>
 
  <sparql:construct var="graph" endpoint="${ld4l}">
-     CONSTRUCT { ?s ?p ?o . ?o skos:prefLabel ?r . ?o2 skos:prefLabel ?r2 . ?o2 loc:lccn ?r2a . ?o3 skos:prefLabel ?r3 .
+     CONSTRUCT { ?s ?p ?o . ?o skos:prefLabel ?r . ?o2 skos:prefLabel ?r2 . ?o3 skos:prefLabel ?r3 .
      			?o4 mads:citation-source ?r4 . ?o5 mads:citation-status ?r5 . ?o6 rdfs:label ?r6 } WHERE { 
       ?s ?p ?o . 
       OPTIONAL { 
